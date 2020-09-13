@@ -15,6 +15,12 @@ class CreateProdutosTable extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->string('marca');
+            $table->unsignedInteger('quantidade_em_estoque');
+            $table->unsignedFloat('peso', 6, 2);
+            $table->unsignedFloat('preco', 8, 2);
+            $table->unsignedFloat('preco_revenda', 8, 2);
             $table->timestamps();
         });
     }

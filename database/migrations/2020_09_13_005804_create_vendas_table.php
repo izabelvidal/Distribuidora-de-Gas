@@ -15,6 +15,10 @@ class CreateVendasTable extends Migration
     {
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedFloat('preco', 8, 2);
+            $table->foreignId('cliente_id')->constrained();
+            $table->foreignId('funcionario_id')->constrained();
+            $table->foreignId('gerente_id')->constrained();
             $table->timestamps();
         });
     }

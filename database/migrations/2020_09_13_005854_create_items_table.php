@@ -15,6 +15,10 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('quantidade');
+            $table->unsignedFloat('preco', 8, 2);
+            $table->foreignId('venda_id')->constrained();
+            $table->foreignId('produto_id')->constrained();
             $table->timestamps();
         });
     }

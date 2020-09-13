@@ -15,6 +15,8 @@ class CreateFuncionariosTable extends Migration
     {
         Schema::create('funcionarios', function (Blueprint $table) {
             $table->id();
+            $table->date('admissao');
+            $table->foreignId('pessoa_id')->constrained();
             $table->timestamps();
         });
     }
