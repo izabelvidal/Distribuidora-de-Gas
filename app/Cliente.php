@@ -2,9 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Cliente extends Model
+class Cliente extends Pessoa
 {
-    //
+    public function vendas()
+    {
+        return $this->hasMany('Venda');
+    }
+
+    public function pessoa()
+    {
+        return $this->belongsTo('Pessoa');
+    }
 }
