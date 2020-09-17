@@ -10,19 +10,12 @@
     </head>
     <body>
         <!--navegação-->
-        <nav>
-            <button>
-                Cadastro
-            </button>
-            <button>
-                Login
-            </button>
-        </nav>
+       @include('incluir.navbar')
 
 
         <div class="main">
            <p> baby isadasdasdasdasdasdasd </p> 
         </div>
-        <footer></footer>
+        @include('incluir.footer')
     </body>
 </html>
