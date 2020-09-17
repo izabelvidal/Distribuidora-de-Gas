@@ -21,20 +21,8 @@
 
 
         <div class="main">
-            <!--<div class="imagem">
-                aqui sera uma imagem
-            </div>
-
-            <article>
-                <h1>Lorem Ipsum</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean imperdiet urna tempus tristique faucibus. Vestibulum et nibh ullamcorper, placerat enim sed, malesuada purus.
-                    Proin nec leo erat. Curabitur bibendum ullamcorper pharetra. In non pharetra tortor. Vivamus ut sagittis nisl.
-                    Vestibulum ultricies sapien dignissim facilisis dapibus.
-                    Vivamus auctor fringilla felis, eget volutpat leo commodo ac.
-                </p>
-            </article>
-        </div>-->
+           <p> baby isadasdasdasdasdasdasd </p> 
+        </div>
         <footer></footer>
     </body>
 </html>
