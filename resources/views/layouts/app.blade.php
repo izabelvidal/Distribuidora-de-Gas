@@ -9,20 +9,8 @@
         <link href="/styles/styles.css" rel="stylesheet">
     </head>
     <body>
-        <!--navegação-->
-        <nav>
-            <button>
-                Cadastro
-            </button>
-            <button>
-                Login
-            </button>
-        </nav>
-
-
         <div class="main">
            <p> baby isadasdasdasdasdasdasd </p> 
         </div>
-        <footer></footer>
     </body>
 </html>
