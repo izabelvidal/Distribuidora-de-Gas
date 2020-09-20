@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GerenteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +13,9 @@ use App\Http\Controllers\GerenteController;
 |
 */
 
-Route::get('/gerente/cadastro', [GerenteController::class, 'cadastro']);
+Route::resources([
+    'clientes' => ClienteController::class,
+    'produtos' => ProdutoController::class,
+    'gerentes' => GerenteController::class,
+    'vendas' => VendaController::class,
+    'funcionarios' => FuncionarioController::class]);
