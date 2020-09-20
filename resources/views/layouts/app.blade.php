@@ -6,7 +6,9 @@
 
         <title>Laravel</title>
 
-        <link href="/styles/styles.css" rel="stylesheet">
+        <link href="/styles/app.css" rel="stylesheet">
+        <link href="/styles/navbar.css" rel="stylesheet">
+        <link href="/styles/footer.css" rel="stylesheet">
     </head>
     <body>
         @include("includes.navbar")
