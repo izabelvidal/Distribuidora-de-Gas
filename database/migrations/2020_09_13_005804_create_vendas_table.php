@@ -17,8 +17,8 @@ class CreateVendasTable extends Migration
             $table->id();
             $table->unsignedFloat('preco', 8, 2);
             $table->foreignId('cliente_id')->constrained();
-            $table->foreignId('funcionario_id')->constrained();
-            $table->foreignId('gerente_id')->constrained();
+            $table->foreignId('funcionario_id')->nullable($value = true)->constrained();
+            $table->foreignId('gerente_id')->nullable($value = true)->constrained();
             $table->timestamps();
         });
     }

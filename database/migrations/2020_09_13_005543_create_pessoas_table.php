@@ -21,6 +21,8 @@ class CreatePessoasTable extends Migration
             $table->string('senha');
             $table->date('nascimento');
             $table->timestamps();
+            $table->unique('email');
+            $table->unique('CPF');
         });
     }
 
