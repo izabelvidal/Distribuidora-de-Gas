@@ -3,34 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gerente;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class GerenteController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
-        //
+        $gerentes = Gerente::all();
+        return view('gerentes.index', ['gerentes' => $gerentes]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
-        //
+        return view('gerentes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,31 +44,31 @@ class GerenteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Gerente  $gerente
-     * @return \Illuminate\Http\Response
+     * @param Gerente $gerente
+     * @return View
      */
     public function show(Gerente $gerente)
     {
-        //
+        return view('gerentes.show', ['gerente' => $gerente]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Gerente  $gerente
-     * @return \Illuminate\Http\Response
+     * @param Gerente $gerente
+     * @return View
      */
     public function edit(Gerente $gerente)
     {
-        //
+        return view('gerentes.edit', ['gerente' => $gerente]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Gerente  $gerente
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Gerente $gerente
+     * @return View
      */
     public function update(Request $request, Gerente $gerente)
     {
@@ -75,11 +78,14 @@ class GerenteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Gerente  $gerente
-     * @return \Illuminate\Http\Response
+     * @param Gerente $gerente
+     * @return RedirectResponse
      */
     public function destroy(Gerente $gerente)
     {
-        //
+        $gerente->pessoa()->endereco()->delete();
+        $gerente->delete();
+        $gerente->pessoa()->delete();
+        return redirect()->action([GerenteController::class, 'index']);
     }
 }
