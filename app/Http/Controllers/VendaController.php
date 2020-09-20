@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Funcionario;
+use App\Models\Venda;
 use Illuminate\Http\Request;
 
-class FuncionarioController extends Controller
+class VendaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class FuncionarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Funcionario  $funcionario
+     * @param  \App\Models\Venda  $venda
      * @return \Illuminate\Http\Response
      */
-    public function show(Funcionario $funcionario)
+    public function show(Venda $venda)
     {
         //
     }
@@ -52,10 +52,10 @@ class FuncionarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Funcionario  $funcionario
+     * @param  \App\Models\Venda  $venda
      * @return \Illuminate\Http\Response
      */
-    public function edit(Funcionario $funcionario)
+    public function edit(Venda $venda)
     {
         //
     }
@@ -64,10 +64,10 @@ class FuncionarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Funcionario  $funcionario
+     * @param  \App\Models\Venda  $venda
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Funcionario $funcionario)
+    public function update(Request $request, Venda $venda)
     {
         //
     }
@@ -75,10 +75,10 @@ class FuncionarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Funcionario  $funcionario
+     * @param  \App\Models\Venda  $venda
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Funcionario $funcionario)
+    public function destroy(Venda $venda)
     {
         //
     }
