@@ -11,7 +11,6 @@
     <body>
         @include("includes.navbar")
         <div class="main">
-           <p> baby isadasdasdasdasdasdasd </p> 
         </div>
         @include("includes.footer")
     </body>
