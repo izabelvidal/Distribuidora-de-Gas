@@ -1,0 +1,8 @@
+footer{
+    display: block;
+    position: relative;
+    width: 100%;
+    clear: both;
+    height: 120px;
+    background: #153299;
+}

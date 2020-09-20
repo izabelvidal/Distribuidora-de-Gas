@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts/app');
-});
+Route::resources([
+    'clientes' => ClienteController::class,
+    'produtos' => ProdutoController::class,
+    'gerentes' => GerenteController::class,
+    'vendas' => VendaController::class,
+    'funcionarios' => FuncionarioController::class]);
