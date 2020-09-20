@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
+use App\Models\Produto;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class ClienteController extends Controller
+class ProdutoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::all();
-        return view('clientes.index', ['clientes' => $clientes]);
+        $produtos = Produto::all();
+        return view('produtos.index', ['produtos' => $produtos]);
     }
 
     /**
@@ -27,50 +28,53 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return view('clientes.create');
+        return view('produtos.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return View
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $produto = new Produto();
+        $produto->fill($request->all());
+        $produto->save();
+        return redirect()->action([ProdutoController::class, 'show'], ['produto' => $produto]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Cliente $cliente
+     * @param Produto $produto
      * @return View
      */
-    public function show(Cliente $cliente)
+    public function show(Produto $produto)
     {
-        return view('clientes.show', ['cliente' => $cliente]);
+        return view('produtos.create', ['produto' => $produto]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Cliente $cliente
+     * @param Produto $produto
      * @return View
      */
-    public function edit(Cliente $cliente)
+    public function edit(Produto $produto)
     {
-        return view('clientes.edit', ['cliente' => $cliente]);
+        return view('produtos.create', ['produto' => $produto]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Cliente $cliente
-     * @return View
+     * @param Produto $produto
+     * @return Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, Produto $produto)
     {
         //
     }
@@ -78,14 +82,11 @@ class ClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Cliente $cliente
-     * @return RedirectResponse
+     * @param Produto $produto
+     * @return Response
      */
-    public function destroy(Cliente $cliente)
+    public function destroy(Produto $produto)
     {
-        $cliente->pessoa()->endereco()->delete();
-        $cliente->delete();
-        $cliente->pessoa()->delete();
-        return redirect()->action([ClienteController::class, 'index']);
+        //
     }
 }
