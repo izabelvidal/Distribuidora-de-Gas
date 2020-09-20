@@ -11,9 +11,9 @@
         <link href="/styles/footer.css" rel="stylesheet">
     </head>
     <body>
-        @include("includes.navbar")
+        @include('includes.navbar')
         <div class="main">
         </div>
-        @include("includes.footer")
+        @include('incluir.footer')
     </body>
 </html>
