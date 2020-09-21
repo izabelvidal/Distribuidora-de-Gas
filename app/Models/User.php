@@ -19,6 +19,18 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    public static $rules = [
+        'name' => 'required|min:5|max:100',
+        'email' => 'required|min:5|max:100',
+        'password' => 'required|min:8|confirmed',
+    ];
+
+    public static $messages = [
+        'name.*' => 'O campo name é obrigatório e deve ter entre 5 e 100 caracteres',
+        'email.*' => 'O campo email é obrigatório e deve ter entre 5 e 100 caracteres',
+        'password.*' => 'O campo password é obrigatório e deve ter 8 caracteres(A-Z ou a-z e números)',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
