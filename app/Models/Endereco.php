@@ -14,11 +14,20 @@ class Endereco extends Model
     protected $fillable = [
         'rua', 'bairro', 'cidade', 'numero', 'CEP'
     ];
+    
     public static $rules = [
         'rua' => 'required|min:5|max:100',
         'bairro' => 'required|min:5|max:100',
         'cidade' => 'required|min:5|max:100',
         'numero' => 'required|min:1|max:100',
         'CEP' => 'required|min:5|max:100'
+    ];
+    
+    public static $messages = [
+        'rua.*' => 'O campo rua é obrigatório e deve ter entre 5 e 100 caracteres',
+        'bairro.*' => 'O campo bairro é obrigatório e deve ter entre 5 e 100 caracteres',
+        'cidade.*' => 'O campo cidade é obrigatório e deve ter entre 5 e 100 caracteres',
+        'numero.*' => 'O campo número é obrigatório e deve ter entre 1 e 100 caracteres',
+        'CEP.*' => 'O campo CEP é obrigatório e deve ter entre 5 e 100 caracteres'
     ];
 }
