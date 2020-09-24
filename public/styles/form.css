@@ -1,0 +1,15 @@
+h2{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 56px;
+
+    color: #000000;
+
+}
+
+form{
+    flex: 1;
+    align-items: center;
+}
