@@ -19,7 +19,7 @@ class Pessoa extends Model
         'nome' => 'required|min:5|max:100',
         'email' => 'required|min:5|max:100',
         'senha' => 'required|min:8|confirmed',
-        'CPF' => 'required|min:5|max:100',
+        'CPF' => 'required|max:11',
         'nascimento' => 'required|min:6|max:8'
     ];
 
@@ -27,7 +27,7 @@ class Pessoa extends Model
         'nome.*' => 'O campo nome é obrigatório e deve ter entre 5 e 100 caracteres',
         'email.*' => 'O campo email é obrigatório e deve ter entre 5 e 100 caracteres',
         'senha.*' => 'O campo senha é obrigatório e deve ter 8 caracteres(A-Z ou a-z e números)',
-        'CPF.*' => 'O campo CPF é obrigatório e deve ter entre 1 e 100 caracteres',
+        'CPF.*' => 'O campo CPF é obrigatório e deve ter 11 caracteres',
         'nascimento.*' => 'O campo nascimento é obrigatório e deve ter entre 6 e 8 caracteres'
     ];
 
