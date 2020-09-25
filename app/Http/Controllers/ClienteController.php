@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Pessoa;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class ClienteController extends Controller
@@ -34,11 +36,15 @@ class ClienteController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return View
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate(Pessoa::$rules);
+        $cliente = new Cliente();
+        $cliente->fill($validated);
+        $cliente->save();
+        return redirect()->action([ClienteController::class, 'show']);
     }
 
     /**
