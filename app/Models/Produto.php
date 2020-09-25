@@ -18,19 +18,19 @@ class Produto extends Model
     public static $rules = [
         'nome' => 'required|min:5|max:100',
         'marca' => 'required|min:5|max:100',
-        'quantidade_em_estoque' => 'required|min:1',
-        'peso' => 'required|min:1',
-        'preco' => 'required|min:2',
-        'preco_revenda' => 'required|min:2'
+        'quantidade_em_estoque' => 'required|numeric|min:1',
+        'peso' => 'required|numeric|min:13',
+        'preco' => 'required|numeric|min:40',
+        'preco_revenda' => 'required|numeric|min:30'
     ];
 
     public static $messages = [
         'nome.*' => 'O campo nome é obrigatório e deve ter entre 5 e 100 caracteres',
         'marca.*' => 'O campo bairro é obrigatório e deve ter entre 5 e 100 caracteres',
-        'quantidade_em_estoque.*' => 'O campo quantidade em estoque é obrigatório e deve ter no mínimo 1 caracter',
-        'peso.*' => 'O campo peso é obrigatório e deve ter no mínimo 1 caracter',
-        'preco.*' => 'O campo preço é obrigatório e deve ter no mínimo 2 caracteres',
-        'preco_revenda.*' => 'O campo preço revenda é obrigatório e deve ter no mínimo 2 caracteres'
+        'quantidade_em_estoque.*' => 'O campo quantidade em estoque é obrigatório e deve ser de no mínimo 1',
+        'peso.*' => 'O campo peso é obrigatório e deve ter no mínimo 13kg',
+        'preco.*' => 'O campo preço é obrigatório e deve ser de no mínimo R$40,00',
+        'preco_revenda.*' => 'O campo preço revenda é obrigatório e deve ser de no mínimo R$30,00'
     ];
 
     
