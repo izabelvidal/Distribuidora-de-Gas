@@ -17,10 +17,10 @@ class Pessoa extends Model
 
     public static $rules = [
         'nome' => 'required|min:5|max:100',
-        'email' => 'required|min:5|max:100',
+        'email' => 'required|email',
         'senha' => 'required|min:8|confirmed',
-        'CPF' => 'required|max:11',
-        'nascimento' => 'required|min:6|max:8'
+        'CPF' => 'required|cpf',
+        'nascimento' => 'required|date'
     ];
 
     public static $messages = [
