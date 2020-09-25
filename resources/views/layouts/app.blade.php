@@ -18,7 +18,7 @@
     </head>
     <body>
         @include('includes.navbar')
-        <div class="container py-5">
+        <div class="container pt-5">
             @yield('content')
         </div>
         @include('includes.footer')
