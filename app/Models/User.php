@@ -2,13 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Jetstream\HasTeams;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    use HasTeams;
     use Notifiable;
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,25 +28,16 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
-    public static $rules = [
-        'name' => 'required|min:5|max:100',
-        'email' => 'required|min:5|max:100',
-        'password' => 'required|min:8|confirmed',
-    ];
-
-    public static $messages = [
-        'name.*' => 'O campo name é obrigatório e deve ter entre 5 e 100 caracteres',
-        'email.*' => 'O campo email é obrigatório e deve ter entre 5 e 100 caracteres',
-        'password.*' => 'O campo password é obrigatório e deve ter 8 caracteres(A-Z ou a-z e números)',
-    ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
@@ -47,5 +47,14 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'profile_photo_url',
     ];
 }
