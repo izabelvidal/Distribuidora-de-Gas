@@ -20,8 +20,8 @@ class Venda extends Model
     ];
 
     public static $messages = [
-        'Item.*' => 'O campo Produto é obrigatório',
-        'cliente_id.*' => 'O campo Cliente',
+        'Item.*' => 'O campo Item é obrigatório',
+        'cliente_id.*' => 'O campo Cliente id',
         'preco.*' => 'O campo preço é obrigatório e deve ser de no mínimo R$30,00',
         'data.*' => 'O campo data é obrigatório',
         'quantidade_de_pedidos.*' => 'O campo quantidade de pedidos é obrigatório e deve ser de no mínimo 1'
