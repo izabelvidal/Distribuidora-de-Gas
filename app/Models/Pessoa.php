@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pessoa extends Model
 {
+    use hasFactory;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -33,6 +36,6 @@ class Pessoa extends Model
 
     public function endereco()
     {
-        return $this->hasOne('Endereco');
+        return $this->hasOne('App\Models\Endereco');
     }
 }
