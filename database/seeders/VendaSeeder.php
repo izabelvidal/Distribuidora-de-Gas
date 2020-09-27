@@ -15,6 +15,7 @@ class VendaSeeder extends Seeder
     public function run()
     {
         Venda::factory()
+            ->count(50)
             ->create();
     }
 }
