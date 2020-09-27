@@ -15,7 +15,7 @@ class CreateVendasTable extends Migration
     {
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedFloat('preco', 8, 2);
+            $table->unsignedFloat('preco', 8, 2)->nullable();
             $table->foreignId('cliente_id')->constrained();
             $table->foreignId('funcionario_id')->nullable($value = true)->constrained();
             $table->foreignId('gerente_id')->nullable($value = true)->constrained();
