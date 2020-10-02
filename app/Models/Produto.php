@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Produto extends Model
 {
+    use hasFactory;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -33,5 +36,5 @@ class Produto extends Model
         'preco_revenda.*' => 'O campo preço revenda é obrigatório e deve ser de no mínimo R$30,00'
     ];
 
-    
+
 }
