@@ -20,14 +20,14 @@ class Endereco extends Model
         'bairro' => 'required|min:5|max:100',
         'cidade' => 'required|min:5|max:100',
         'numero' => 'required|min:1|max:4',
-        'CEP' => 'required|min:5|max:10'
+        'CEP' => 'required|min:8|max:8'
     ];
     
     public static $messages = [
         'rua.*' => 'O campo rua é obrigatório e deve ter entre 5 e 100 caracteres',
         'bairro.*' => 'O campo bairro é obrigatório e deve ter entre 5 e 100 caracteres',
         'cidade.*' => 'O campo cidade é obrigatório e deve ter entre 5 e 100 caracteres',
-        'numero.*' => 'O campo número é obrigatório e deve ter entre 1 e 4 caracteres',
-        'CEP.*' => 'O campo CEP é obrigatório e deve ter entre 5 e 10 caracteres'
+        'numero.*' => 'O campo número é obrigatório e deve ter entre 1 e 4 dígitos',
+        'CEP.*' => 'O campo CEP é obrigatório e deve ter 8 dígitos'
     ];
 }
