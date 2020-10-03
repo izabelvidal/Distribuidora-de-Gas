@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GerenteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,22 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');*/
+
+Route::prefix('/user')->namespace('User')->group(function(){
+    Route::prefix('/gerente')->namespace('Gerente')->group(function(){
+        Route::prefix('/criar_produto')->namespace('NovoProduto')->group(function(){
+            Route::get('/', [GerenteController::class, 'cadastroProduto'])->middleware('auth');
+            Route::post('/salvar' , [GerenteController::class, 'salvarProduto'])->name('salvar');
+        });
+
+    });
+    Route::prefix('/funcionario')->namespace('Funcionario')->group(function(){
+        
+    });
+    Route::prefix('/cliente')->namespace('Cliente')->group(function(){
+        
+    });
+});
 
 Auth::routes();
 
