@@ -8,6 +8,14 @@ class Cliente extends Pessoa
 {
     use hasFactory;
 
+    protected $fillable = [
+        'tipo', 'telefone'
+    ];
+
+    public static $rules = [
+        'tipo' => 'required',
+        'telefone' => 'required',
+    ];
     public function vendas()
     {
         return $this->hasMany('App\Models\Venda');
