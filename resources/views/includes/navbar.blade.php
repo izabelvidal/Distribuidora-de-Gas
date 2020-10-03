@@ -9,12 +9,34 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="btn btn-outline-light ml-md-2" href="inscricao.html">Login</a>
+          @guest
+            <li class="nav-item">
+              <a class="btn btn-outline-light ml-md-2" href="{{ route('login') }}">Login</a>
+            </li>
+            @if(Route::has('register'))
+              <li class="nav-item mr-5">
+                <a class="btn btn-outline-light ml-md-2" href="{{ route('register') }}">Cadastrar</a>
+              </li>
+            @endif
+          @else
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }}
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
           </li>
-          <li class="nav-item mr-5">
-            <a class="btn btn-outline-light ml-md-2" href="inscricao.html">Cadastrar</a>
-          </li>
+          @endguest
         </ul>
       </div>
 
