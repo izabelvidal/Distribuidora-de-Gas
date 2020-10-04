@@ -24,7 +24,11 @@ class VendaController extends Controller
      */
     public function create()
     {
-        //
+        $produtos = Produto::all();
+        $clientes = Cliente::all();
+        return view('vendas.create', [produtos => $produtos,'clientes' => $clientes]);
+
+
     }
 
     /**
@@ -35,7 +39,20 @@ class VendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $venda = new Venda();
+        $venda->fill($Request->validate(venda::$rules));
+        $vendas->save();
+        $produto = Produto::find($request->produto_id);
+        $cliente = Cliente::find($request->cliente_id);  
+        $item = new Item();
+        $item->produto()->associate($produto);
+        $item-> quantidade = $request->quantidade;
+        $item->preco = $item->quantidade * $produto->preço;
+        $venda->items()->save($item);
+        $venda->cliente()->associate($cliente);
+        return redirect()->action([VendaController::class, 'show'], ['venda' => $venda]);
+
+
     }
 
     /**
@@ -46,7 +63,9 @@ class VendaController extends Controller
      */
     public function show(Venda $venda)
     {
-        //
+        return 'CRIOU';
+
+
     }
 
     /**
