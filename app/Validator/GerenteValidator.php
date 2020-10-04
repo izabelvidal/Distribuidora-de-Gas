@@ -2,6 +2,8 @@
 
 namespace App\Validator;
 
+use App\Validator\ValidationException;
+
 class GerenteValidator{
     
     public static function validate($data){
