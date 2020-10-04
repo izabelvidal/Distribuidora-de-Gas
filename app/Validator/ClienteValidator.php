@@ -2,6 +2,8 @@
 
 namespace App\Validator;
 
+use App\Models\Cliente;
+
 class ClienteValidator{
     
     public static function validate($data){

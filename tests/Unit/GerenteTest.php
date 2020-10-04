@@ -14,16 +14,27 @@ class GerenteTest extends TestCase
      * A basic unit test example.
      *
      * @return void
+     * @expectedException App\Validator\ValidationException
+     */
+    public function testGerenteNomeInvalido()
+    {
+        $gerente = Gerente::factory()->make();
+        $dados = $gerente->toArray();
+        $dados['nome'] = "abc";
+        GerenteValidator::validate($dados);
+        $this->assertTrue(True);
+    }
+
+    /**
+     * @expectedException App\Validator\ValidationException
      * @test
      */
-    public function gerenteNomeInvalido()
+    public function testGerenteCPFInvalido()
     {
-        $gerente = new Gerente;
-        $gerente->nome = "ffg";
-        $gerente->CPF = "12345678910";
-        $gerente->email = "gerente@mail.com";
-        $gerente->senha = "12345678";
-        $gerente->nascimento = 04/11/1999;
+        $gerente = Gerente::factory()->make();
+        $dados = $gerente->toArray();
+        $dados['CPF'] = '123de';
         GerenteValidator::validate($gerente->toArray());
+        $this->assertTrue(True);
     }
 }
