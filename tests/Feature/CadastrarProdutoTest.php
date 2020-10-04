@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Models\Produto;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+
 
 class CadastrarProdutoTest extends TestCase
 {
@@ -14,9 +16,10 @@ class CadastrarProdutoTest extends TestCase
      * @return void
      */
 
-    public function gerenteNaoLogado(){
-        $response = $this
-		->get('produto.create')
-		->assertStatus(403);
+    public function testCadastrarProduto()
+    {
+        $produto = Produto::factory()->make();
+        $response = $this->post('/produtos', $produto->toArray());
+        $response->assertSeeText($produto->marca);
     }
 }

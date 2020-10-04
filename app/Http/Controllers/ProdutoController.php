@@ -40,7 +40,7 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $produto = new Produto();
-        $produto->fill($request->all());
+        $produto->fill($request->validate(Produto::$rules));
         $produto->save();
         return redirect()->action([ProdutoController::class, 'show'], ['produto' => $produto]);
     }

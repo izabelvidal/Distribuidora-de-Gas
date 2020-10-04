@@ -26,7 +26,7 @@ class EnderecoFactory extends Factory
             'bairro' => $this->faker->word,
             'cidade' => $this->faker->city,
             'numero' => $this->faker->buildingNumber,
-            'cep' => "" . $this->faker->numberBetween($min = 00000, $max = 99999) . "-" . $this->faker->numberBetween($min = 000, $max = 999),
+            'CEP' => "" . $this->faker->numberBetween($min = 00000, $max = 99999) . "-" . $this->faker->numberBetween($min = 000, $max = 999),
         ];
     }
 }
