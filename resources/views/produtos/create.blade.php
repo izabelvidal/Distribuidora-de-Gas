@@ -1,34 +1,31 @@
-<!doctype html>
-<html lang="pt-BR">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>cadastro</title>
-</head>
-
-<body>
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-<form action="/produtos" method="post">
-    @csrf
-    <div><label for="nome">nome:</label> <input type="text" name="nome" id="nome" value="{{ old('nome') }}"></div>
-    <div><label for="marca">marca:</label> <input type="text" name="marca" id="marca" value="{{ old('marca') }}"></div>
-    <div><label for="quantidade_em_estoque">quantidade em estoque:</label> <input type="number"  name="quantidade_em_estoque" id="quantidade_em_estoque" value="{{ old('quantidade_em_estoque') }}"></div>
-    <div><label for="peso">peso:</label> <input type="number" name="peso" id="peso" step="0.01" value="{{ old('peso') }}"></div>
-    <div><label for="preco">preço:</label> <input type="number" name="preco" id="preco" step="0.01" value="{{ old('preco') }}"></div>
-    <div><label for="preco_revenda">preço de revenda:</label> <input type="number" step="0.01" name="preco_revenda" id="preco_revenda" value="{{ old('preco_revenda') }}"></div>
-    <div><input type="submit" value="cadastrar"></div>
-</form>
-</body>
-
-</html>
+@section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form action="/clientes" method="post">
+        @csrf
+        <div><label for="nome">nome:</label> <input type="text" name="nome" id="nome" value="{{ old('nome') }}"></div>
+        <div><label for="CPF">CPF:</label> <input type="text" name="CPF" id="CPF" value="{{ old('CPF') }}"></div>
+        <div><label for="nascimento">nascimento:</label> <input type="date" name="nascimento" id="nascimento" value="{{ old('nascimento') }}"></div>
+        <div><label for="email">email:</label> <input type="email" name="email" id="email" value="{{ old('email') }}"></div>
+        <div><label for="senha">senha:</label> <input type="password" name="senha" id="senha"></div>
+        <div><label for="senha_confirmation">senha confirmation:</label> <input type="password" name="senha_confirmation"
+                                                                                id="senha_confirmation"></div>
+        <div><label for="telefone">telefone:</label> <input type="text" name="telefone" id="telefone" value="{{ old('telefone') }}"></div>
+        <div><label for="tipo">tipo:</label> <input type="text" name="tipo" id="tipo" value="{{ old('tipo') }}"></div>
+        <div><label for="rua">rua:</label> <input type="text" name="rua" id="rua" value="{{ old('rua') }}"></div>
+        <div><label for="bairro">bairro:</label> <input type="text" name="bairro" id="bairro" value="{{ old('bairro') }}"></div>
+        <div><label for="CEP">CEP:</label> <input type="text" name="CEP" id="CEP" value="{{ old('CEP') }}"></div>
+        <div><label for="numero">numero:</label> <input type="text" name="numero" id="numero" value="{{ old('numero') }}"></div>
+        <div><label for="cidade">cidade:</label> <input type="text" name="cidade" id="cidade" value="{{ old('cidade') }}"></div>
+        <div><input type="submit" value="cadastrar"></div>
+    </form>
+@endsection
