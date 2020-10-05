@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::prefix('/user')->namespace('User')->group(function(){
     Route::prefix('/gerente')->namespace('Gerente')->group(function(){
         Route::prefix('/criar_produto')->namespace('NovoProduto')->group(function(){
-            Route::get('/', [GerenteController::class, 'cadastroProduto'])->middleware('auth');
+            Route::get('/', [GerenteController::class, 'cadastroProduto']);
             Route::post('/salvar' , [GerenteController::class, 'salvarProduto'])->name('salvar');
         });
 

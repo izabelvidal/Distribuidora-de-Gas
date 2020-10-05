@@ -2,6 +2,8 @@
 
 namespace App\Validator;
 
+use App\Models\Venda;
+
 class VendaValidator{
     
     public static function validate($data){
