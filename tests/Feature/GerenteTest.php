@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Gerente;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -13,10 +14,10 @@ class GerenteTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testCadastrarGerente()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $gerente = Gerente::factory()->make();
+        $response = $this->post('/gerente', $gerente->toArray());
+        $response->assertSeetext($gerente->nome);
     }
 }
