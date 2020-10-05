@@ -38,7 +38,17 @@ class GerenteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $gerente = new Gerente();
+        $pessoa = new Pessoa();
+        $endereco = new Endereco();
+        $gerente->fill($request->validate(Gerente::$rules));
+        $pessoa->fill($request->validate(Pessoa::$rules));
+        $endereco->fill($request->validate(Endereco::$rules));
+        $pessoa->save();
+        $gerente->pessoa()->associate($pessoa);
+        $pessoa->endereco()->save($endereco);
+        $gerente->save();
+        return redirect()->action([GerenteController::class, 'show'], ['gerente' => $gerente]);
     }
 
     /**
@@ -87,5 +97,9 @@ class GerenteController extends Controller
         $gerente->delete();
         $gerente->pessoa()->delete();
         return redirect()->action([GerenteController::class, 'index']);
+    }
+
+    public function cadastroProduto(Gerente $gerente){
+
     }
 }
