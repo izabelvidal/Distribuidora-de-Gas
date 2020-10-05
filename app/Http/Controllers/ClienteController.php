@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Endereco;
 use App\Models\Pessoa;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,7 +20,9 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
-        return view('clientes.index', ['clientes' => $clientes]);
+
+        $cliente = Cliente::factory()->make();
+        return view('clientes.index', ['cliente' => $cliente]);
     }
 
     /**
@@ -40,11 +43,17 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate(Pessoa::$rules);
         $cliente = new Cliente();
-        $cliente->fill($validated);
+        $pessoa = new Pessoa();
+        $endereco = new Endereco();
+        $cliente->fill($request->validate(Cliente::$rules));
+        $pessoa->fill($request->validate(Pessoa::$rules));
+        $endereco->fill($request->validate(Endereco::$rules));
+        $pessoa->save();
+        $cliente->pessoa()->associate($pessoa);
+        $pessoa->endereco()->save($endereco);
         $cliente->save();
-        return redirect()->action([ClienteController::class, 'show']);
+        return redirect()->action([ClienteController::class, 'show'], ['cliente' => $cliente]);
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Validator;
 
+Use App\Models\Funcionario;
+
 class FuncionarioValidator{
     
     public static function validate($data){
