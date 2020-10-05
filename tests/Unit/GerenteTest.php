@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 
 class GerenteTest extends TestCase
 {
-    public function testClienteComNomeInvalido(){
+    public function testGerenteComNomeInvalido(){
         $gerente = new Gerente();
         $gerente->pessoa = Pessoa::factory()->make(['nome' => 'abc']);
         $validator = Validator::make($gerente->pessoa->toArray(), Pessoa::$rules);
