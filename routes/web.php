@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GerenteController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\VendaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,22 +18,16 @@ use App\Http\Controllers\GerenteController;
 |
 */
 
-/*Route::resources([
-    'clientes' => ClienteController::class,
-    'produtos' => ProdutoController::class,
-    'gerentes' => GerenteController::class,
-    'vendas' => VendaController::class,
-    'funcionarios' => FuncionarioController::class]);
+//gerente
+Route::group(['middleware' => ['CheckGerente', 'verified']], function(){
+    Route::get('/home-gerente', [GerenteController::class, 'index'])->name('gerentes.index');
+});
 
-Auth::routes();
+Route::group(['middleware' => ['CheckFuncionario', 'verified']], function(){});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => ['CheckCliente', 'verified']], function(){});
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');*/
-
-Route::prefix('/user')->namespace('User')->group(function(){
+/*Route::prefix('/user')->namespace('User')->group(function(){
     Route::prefix('/gerente')->namespace('Gerente')->group(function(){
         Route::prefix('/criar_produto')->namespace('NovoProduto')->group(function(){
             Route::get('/', [GerenteController::class, 'cadastroProduto']);
@@ -43,7 +41,9 @@ Route::prefix('/user')->namespace('User')->group(function(){
     Route::prefix('/cliente')->namespace('Cliente')->group(function(){
         
     });
-});
+});*/
+
+
 
 Auth::routes();
 

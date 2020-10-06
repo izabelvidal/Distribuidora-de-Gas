@@ -10,7 +10,20 @@
             </ul>
         </div>
     @endif
-    <form action="/gerentes" method="post">
+
+    <form>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="{{ old('email') }}">
+        </div>
+        <div class="form-group">
+            <label>Senha</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <!--<form action="/gerentes" method="post">
         @csrf
         <div><label for="nome">nome:</label> <input type="text" name="nome" id="nome" value="{{ old('nome') }}"></div>
         <div><label for="CPF">CPF:</label> <input type="text" name="CPF" id="CPF" value="{{ old('CPF') }}"></div>
@@ -27,5 +40,5 @@
         <div><label for="numero">numero:</label> <input type="text" name="numero" id="numero" value="{{ old('numero') }}"></div>
         <div><label for="cidade">cidade:</label> <input type="text" name="cidade" id="cidade" value="{{ old('cidade') }}"></div>
         <div><input type="submit" value="cadastrar"></div>
-    </form>
+    </form>-->
 @endsection
