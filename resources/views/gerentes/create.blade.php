@@ -19,7 +19,7 @@
 
         <div class="form-group">
             <label>Email</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="{{ old('email') }}">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" value="{{ old('email') }}">
         </div>
 
         <div class="form-row">
@@ -36,15 +36,15 @@
         <div class="form-row">
             <div class="col-md-6">
                 <label>Rua</label>
-                <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua">
+                <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" value="{{ old('rua') }}">
             </div>
             <div class="col-md-4">
                 <label>Bairro</label>
-                <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro">
+                <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" value="{{ old('bairro') }}">
             </div>
             <div class="col-md-2">
                 <label>Número</label>
-                <input type="text" class="form-control" id="numero" name="numero" placeholder="Ex: 20">
+                <input type="text" class="form-control" id="numero" name="numero" placeholder="Ex: 20" value="{{ old('numero') }}">
             </div>
         </div>
 
@@ -62,7 +62,7 @@
             </div>
             <div class="form-group col-md-2">
                 <label>CEP</label>
-                <input type="text" class="form-control" name="CEP" id="CEP" placeholder="Ex: 55158-400">
+                <input type="text" class="form-control" name="CEP" id="CEP" placeholder="Ex: 55158-400" value="{{ old('CEP') }}">
             </div>
         </div>
     
