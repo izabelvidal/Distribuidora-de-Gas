@@ -76,7 +76,10 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        $request->validate(Produto::$rules);
+        $project->update($request->all());
+
+        return view('produtos.update',['produto' => $produto]);
     }
 
     /**
@@ -87,6 +90,7 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
-        //
+        $produto->delete();
+        return redirect()->action([ProdutoController::class, 'index']);
     }
 }
