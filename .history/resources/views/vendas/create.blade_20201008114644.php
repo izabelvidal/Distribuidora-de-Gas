@@ -2,7 +2,7 @@
 
 @section('content')
 
-
+    
         <div class="form-group">
             <label>quantidade</label>
             <input type="number" class="form-control" aria-describedby="quantidade" placeholder="Quantidade" value="{{ old('quantidade') }}">
@@ -24,6 +24,7 @@
         <option value="3">Debito</option>
       </select>
     </div> 
+
     
         
         <button type="submit" class="btn btn-primary">Submit</button>
