@@ -1,22 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+
+    <form>
+        <div class="form-group">
+            <label>Nome</label>
+            <input class="form-control" type="text" placeholder="Nome" value="{{ old('nome') }}">
         </div>
-    @endif
-    <form action="/produtos" method="post">
-        @csrf
-        <div><label for="nome">nome:</label> <input type="text" name="nome" id="nome" value="{{ old('nome') }}"></div>
-        <div><label for="marca">marca:</label> <input type="text" name="marca" id="marca" value="{{ old('marca') }}"></div>
-        <div><label for="quantidade_em_estoque">quantidade em estoque:</label> <input type="number" name="quantidade_em_estoque" id="quantidade_em_estoque" value="{{ old('quantidade_em_estoque') }}"></div>
-        <div><label for="peso">peso:</label> <input type="number" name="peso" id="peso" value="{{ old('peso') }}"></div>
-        <div><label for="preco">preco:</label> <input type="number" name="preco" id="preco"></div>
-        <div><label for="preco_revenda">preco revenda:</label> <input type="number" name="preco_revenda" id="preco_revenda" value="{{ old('preco_revenda') }}"></div>
+
+        <div class="form-group">
+            <label>Marca</label>
+            <input type="text" class="form-control" placeholder="Marca" value="{{ old('marca') }}">
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <label>Quantidade em estoque</label>
+                <input type="number" class="form-control" name="quantidade_em_estoque" placeholder="Quantidade_em_estoque" value="{{ old('quantidade_em_estoque') }}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <label>Peso</label>
+                <input type="number" class="form-control" name="peso" placeholder="Peso" value="{{ old('peso') }}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <label>Preço</label>
+                <input type="number" class="form-control" name="preco" placeholder="Preco" value="{{ old('preco') }}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <label>Preço de revenda</label>
+                <input type="number" class="form-control" name="preco_revenda" placeholder="Preco_revenda" value="{{ old('preco_revenda') }}">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 @endsection
