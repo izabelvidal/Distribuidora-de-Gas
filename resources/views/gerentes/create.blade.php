@@ -98,7 +98,6 @@
             </div>
         </div>
     
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <input class="btn btn-primary" type="submit" value="cadastrar">
     </form>
 @endsection
