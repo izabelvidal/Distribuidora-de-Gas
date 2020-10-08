@@ -5,12 +5,12 @@
     <form>
         <div class="form-group">
             <label>Nome</label>
-            <input class="form-control" type="text" placeholder="Nome" value="{{ old('nome') }}">
+            <input class="form-control" name="nome" type="text" placeholder="Nome" value="{{ old('nome') }}">
         </div>
 
         <div class="form-group">
             <label>Marca</label>
-            <input type="text" class="form-control" placeholder="Marca" value="{{ old('marca') }}">
+            <input type="text" class="form-control" name="quantidade_em_estoque" placeholder="Marca" value="{{ old('marca') }}">
         </div>
 
         <div class="form-group">
