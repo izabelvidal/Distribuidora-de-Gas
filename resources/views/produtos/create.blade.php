@@ -15,7 +15,7 @@
         <div class="form-row">
             <div class="col-md-4">
                 <label>Marca</label>
-                <input type="text" class="form-control" name="marca" placeholder="Marca" value="{{ old('marca') }}">
+                <input type="text" class="form-control" name="marca" placeholder="Marca" value="{{ old('marcas') }}">
             </div>
             <div class="col-md-2">
                 <label>Quantidade em estoque</label>
