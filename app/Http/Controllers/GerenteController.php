@@ -18,7 +18,7 @@ class GerenteController extends Controller
     {
         $gerentes = Gerente::all();
         return view('gerentes.index', ['gerentes' => $gerentes]);
-    }
+    }             
 
     /**
      * Show the form for creating a new resource.
