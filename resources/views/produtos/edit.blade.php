@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container mx-5">
-    <form action="/clientes" method="post">
+    <form action="/produtos" method="post">
         @csrf
         <div class="form-row">
             <div class="col-md-8">
