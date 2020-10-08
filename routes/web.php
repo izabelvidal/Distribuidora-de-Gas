@@ -19,9 +19,9 @@ use App\Http\Middleware\CheckGerente;
 |
 */
 //teste
-Route::get('/gerente', function(){
+/*Route::get('/gerente', function(){
     return view('gerentes.create');
-});
+});*/
 
 //gerente
 Route::group(['middleware' => [CheckGerente::class, 'verified']], function(){
@@ -51,6 +51,7 @@ Route::group(['middleware' => ['CheckCliente', 'verified']], function(){});
 });*/
 
 Route::resource("clientes", "ClienteController");
+Route::resource("gerentes", "GerenteController");
 
 Route::resource("produtos", "ProdutoController");
 

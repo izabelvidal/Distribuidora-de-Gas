@@ -103,8 +103,4 @@ class GerenteController extends Controller
         $gerente->pessoa()->delete();
         return redirect()->action([GerenteController::class, 'index']);
     }
-
-    public function cadastroProduto(Gerente $gerente){
-
-    }
 }

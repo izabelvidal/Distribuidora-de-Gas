@@ -6,50 +6,50 @@
         @csrf
         <div class="form-group">
             <label>Nome</label>
-            <input class="form-control" type="text" placeholder="Nome" name="nome" value="{{ old('nome') }}">
+            <input class="form-control" type="text" placeholder="Nome" name="nome" value="{{ $gerente->pessoa->nome }}">
         </div>
 
         <div class="form-group">
             <label>Email</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" name="email" value="{{ old('email') }}">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" name="email" value="{{ $gerente->pessoa->email }}">
         </div>
 
         <div class="form-row">
             <div class="col">
                 <label> Senha</label>
-                <input class="form-control" type="password" placeholder="Senha" name="senha" id="senha">
+                <input class="form-control" type="password" placeholder="Senha" name="senha" id="senha" value="{{ $gerente->pessoa->senhas }}">
             </div>
             <div class="col">
                 <label>Confirmar Senha</label>
-                <input class="form-control" type="password" placeholder="Confirmar senha" name="senha_confirmation" id="senha">
+                <input class="form-control" type="password" placeholder="Confirmar senha" name="senha_confirmation" id="senha" value="{{ $gerente->pessoa->senha-confirmation }}">
             </div>
         </div>
 
         <div class="form-row mt-3">
             <div class="col-md-6">
                 <label>Telefone</label>
-                <input type="number" class="form-control" placeholder="Telefone" name="telefone" value="{{ old('telefone') }}">
+                <input type="number" class="form-control" placeholder="Telefone" name="telefone" value="{{ $gerente->pessoa->telefone' }}">
             </div>
         </div>
         <div class="form-row mt-3">
             <div class="col-md-6">
                 <label>Rua</label>
-                <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" value="{{ old('rua') }}">
+                <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" value="{{ $gerente->pessoa->endereco->rua }}">
             </div>
             <div class="col-md-4">
                 <label>Bairro</label>
-                <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" value="{{ old('bairro') }}">
+                <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" value="{{ $gerente->pessoa->endereco->bairro }}">
             </div>
             <div class="col-md-2">
                 <label>Número</label>
-                <input type="text" class="form-control" id="numero" name="numero" placeholder="Ex: 20" value="{{ old('numero') }}">
+                <input type="text" class="form-control" id="numero" name="numero" placeholder="Ex: 20" value="{{ $gerente->pessoa->endereco->numero }}">
             </div>
         </div>
     
         <div class="form-row mt-3">
             <div class="form-group col-md-6">
                 <label>Cidade</label>
-                <input type="text" class="form-control" id="cidade" placeholder="Cidade" name="cidade" value="{{ old('cidade') }}">
+                <input type="text" class="form-control" id="cidade" placeholder="Cidade" name="cidade" value="{{ $gerente->pessoa->endereco->cidade }}">
             </div>
             <div class="form-group col-md-4">
                 <label>Estado</label>
