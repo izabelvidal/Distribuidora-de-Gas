@@ -23,8 +23,8 @@
                 <td>{{ $produto->preco }}</td>
                 <td>{{ $produto->preco_revenda }}</td>
                 <td>
-                    <a href="{{route("produtos.edit [$produto])}}>editar</a>
-                    <a href="{{route("produtos.show [$produto])}}>visualizar</a>
+                    <a href="{{route("produtos.edit", [$produto])}}"">editar</a>
+                    <a href="{{route("produtos.show", [$produto])}}"">visualizar</a>
                 </td>
             </tr>
         @endforeach

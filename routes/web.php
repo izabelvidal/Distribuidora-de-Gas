@@ -33,15 +33,6 @@ Route::group(['middleware' => ['CheckFuncionario', 'verified']], function(){});
 
 Route::group(['middleware' => ['CheckCliente', 'verified']], function(){});
 
-Route::get('/produtos', function(){
-    return view('produtos.create');
-});
-
-Route::get('/produtos/edit', function(){
-    return view('produtos.edit');
-});
-
-
 
 /*Route::prefix('/user')->namespace('User')->group(function(){
     Route::prefix('/gerente')->namespace('Gerente')->group(function(){
@@ -60,6 +51,8 @@ Route::get('/produtos/edit', function(){
 });*/
 
 Route::resource("clientes", "ClienteController");
+
+Route::resource("produtos", "ProdutoController");
 
 Auth::routes();
 

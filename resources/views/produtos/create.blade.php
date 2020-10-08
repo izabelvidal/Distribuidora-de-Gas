@@ -3,7 +3,8 @@
 @section('content')
 
 <div class="container mx-5">
-    <form>
+    <form action="/produtos" method="post">
+        @csrf
         <div class="form-row">
             <div class="col-md-8">
                 <label>Nome</label>
@@ -14,7 +15,7 @@
         <div class="form-row">
             <div class="col-md-4">
                 <label>Marca</label>
-                <input type="text" class="form-control" name="quantidade_em_estoque" placeholder="Marca" value="{{ old('marca') }}">
+                <input type="text" class="form-control" name="marca" placeholder="Marca" value="{{ old('marca') }}">
             </div>
             <div class="col-md-2">
                 <label>Quantidade em estoque</label>
@@ -37,7 +38,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary my-5">Submit</button>
+        <input class="btn btn-primary my-5" type="submit" value="cadastrar">
     </form>
 </div>
 @endsection
