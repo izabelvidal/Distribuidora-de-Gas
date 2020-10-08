@@ -8,7 +8,7 @@
                 <h2> {{ $produto->nome }}</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('projects.index') }}" title="Go back"> <i
+                <a class="btn btn-primary" href="{{ route('produtos.index') }}" title="Go back"> <i
                         class="fas fa-backward "></i> </a>
             </div>
         </div>
@@ -18,31 +18,31 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Marca:</strong>
-                {{ $produto->name }}
+                {{ $produto->marca }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Introduction:</strong>
-                {{ $project->introduction }}
+                <strong>Quantidade em estoque</strong>
+                {{ $produto->quantidade_em_estoque }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Location:</strong>
-                {{ $project->location }}
+                <strong>Peso</strong>
+                {{ $produto->peso }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Cost:</strong>
-                {{ $project->cost }}
+                <strong>Preço</strong>
+                {{ $produto->preco }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Date Created:</strong>
-                {{ date_format($project->created_at, 'jS M Y') }}
+                <strong>Preço de revenda</strong>
+                {{ $produto->preco_revenda }}
             </div>
         </div>
     </div>
