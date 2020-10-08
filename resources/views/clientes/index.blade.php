@@ -1,18 +1,27 @@
-<table >
-        <tr >
-            <td style="border-style: solid;
-  border-width: 5px;border-color: blue;">{{ $cliente->pessoa->nome }}</td>
-            <td style="border-style: solid;
-  border-width: 5px;border-color: blue;">{{ $cliente->pessoa->nascimento }}</td>
-            <td style="border-style: solid;
-  border-width: 5px;border-color: blue;">{{ $cliente->pessoa->email }}</td>
-            <td style="border-style: solid;
-  border-width: 5px;border-color: blue;">{{ $cliente->pessoa->senha }}</td>
-            <td  style="border-style: solid;
-  border-width: 5px;border-color: blue;">{{ $cliente->pessoa->CPF }}</td>
-            <td style="border-style: solid;
-  border-width: 5px;border-color: blue;">{{ $cliente->telefone }}</td>
-            <td style="border-style: solid;
-  border-width: 5px;border-color: blue;">{{ $cliente->tipo }}</td>
+@extends('layouts.app')
+
+@section('content')
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Opções</th>
         </tr>
-</table>
+        </thead>
+        <tbody>
+        @foreach($clientes as $cliente)
+            <tr>
+                <td>{{ $cliente->pessoa->nome }}</td>
+                <td>{{ $cliente->pessoa->CPF }}</td>
+                <td>{{ $cliente->pessoa->email }}</td>
+                <td>
+                    <a href="{{route("clientes.edit", [$cliente])}}">editar</a>
+                    <a href="{{route("clientes.show", [$cliente])}}">visualizar</a>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+@endsection

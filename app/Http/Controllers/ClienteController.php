@@ -20,9 +20,7 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
-
-        $cliente = Cliente::factory()->make();
-        return view('clientes.index', ['cliente' => $cliente]);
+        return view('clientes.index', ['clientes' => $clientes]);
     }
 
     /**

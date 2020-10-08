@@ -23,11 +23,11 @@ class ClienteTest extends DuskTestCase
         $cliente->pessoa->endereco = Endereco::factory()->make();
         $this->browse(function (Browser $browser) use ($cliente) {
             $browser->visit('/clientes/create')
-                ->type('tipo', $cliente->tipo)
+                ->radio('tipo', 'consumidor')
                 ->type('telefone', $cliente->telefone)
                 ->type('email', $cliente->pessoa->email)
                 ->type('nome', $cliente->pessoa->nome)
-                ->type('nascimento', $cliente->pessoa->nascimento->date('d/m/Y'))
+                ->type('nascimento', $cliente->pessoa->nascimento)
                 ->type('CPF', $cliente->pessoa->CPF)
                 ->type('senha', $cliente->pessoa->senha)
                 ->type('senha_confirmation', $cliente->pessoa->senha)
@@ -38,7 +38,7 @@ class ClienteTest extends DuskTestCase
                 ->type('bairro', $cliente->pessoa->endereco->bairro)
                 ->pause(2000)
                 ->press('cadastrar')
-                ->assertSee('CRIOU');
+                ->assertSee($cliente->pessoa->nome);
         });
     }
 }

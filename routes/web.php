@@ -41,14 +41,14 @@ Route::group(['middleware' => ['CheckCliente', 'verified']], function(){});
 
     });
     Route::prefix('/funcionario')->namespace('Funcionario')->group(function(){
-        
+
     });
     Route::prefix('/cliente')->namespace('Cliente')->group(function(){
-        
+
     });
 });*/
 
-
+Route::resource("clientes", "ClienteController");
 
 Auth::routes();
 
