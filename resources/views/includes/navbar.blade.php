@@ -11,13 +11,12 @@
         <ul class="navbar-nav ml-auto">
           @guest
             <li class="nav-item">
+            @if(Route::currentRouteName() == 'register')
               <a class="btn btn-outline-light ml-md-2" href="{{ route('login') }}">Login</a>
-            </li>
-            @if(Route::has('register'))
-              <li class="nav-item mr-5">
-                <a class="btn btn-outline-light ml-md-2" href="{{ route('register') }}">Cadastrar</a>
-              </li>
+            @else  
+              <a class="btn btn-outline-light ml-md-2" href="{{ route('register') }}">Cadastrar</a>
             @endif
+            </li>
           @else
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

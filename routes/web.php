@@ -18,10 +18,11 @@ use App\Http\Middleware\CheckGerente;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//teste
 Route::get('/gerente', function(){
     return view('gerentes.create');
 });
+
 //gerente
 Route::group(['middleware' => [CheckGerente::class, 'verified']], function(){
     Route::get('/home-gerente', [GerenteController::class, 'index'])->name('gerentes.index');
