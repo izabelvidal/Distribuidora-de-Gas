@@ -1,20 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <table >
-            <tr >
-                <td style="border-style: solid;
-    border-width: 5px;border-color: blue;">{{ $produto->nome }}</td>
-                <td style="border-style: solid;
-    border-width: 5px;border-color: blue;">{{ $produto->marca }}</td>
-                <td style="border-style: solid;
-    border-width: 5px;border-color: blue;">{{ $produto->quantidade_em_estoque }}</td>
-                <td style="border-style: solid;
-    border-width: 5px;border-color: blue;">{{ $produto->peso }}</td>
-                <td  style="border-style: solid;
-    border-width: 5px;border-color: blue;">{{ $produto->preco }}</td>
-                <td style="border-style: solid;
-    border-width: 5px;border-color: blue;">{{ $produto->preco_revenda }}</td>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Marca</th>
+            <th>Quatidade em estoque</th>
+            <th>Peso</th>
+            <th>Preço</th>
+            <th>Preço de revenda</th>
+            <th>Opções</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($produtos as $produto)
+            <tr>
+                <td>{{ $produto->nome }}</td>
+                <td>{{ $produto->marca }}</td>
+                <td>{{ $produto->quantidade_em_estoque }}</td>
+                <td>{{ $produto->peso }}</td>
+                <td>{{ $produto->preco }}</td>
+                <td>{{ $produto->preco_revenda }}</td>
+                <td>
+                    <a href="{{route("produtos.edit", [$produto])}}"">editar</a>
+                    <a href="{{route("produtos.show", [$produto])}}"">visualizar</a>
+                </td>
             </tr>
+        @endforeach
+        </tbody>
     </table>
 @endsection

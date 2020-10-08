@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Redirect;
 
 class ProdutoController extends Controller
 {
@@ -53,7 +54,7 @@ class ProdutoController extends Controller
      */
     public function show(Produto $produto)
     {
-        return view('produtos.create', ['produto' => $produto]);
+        return view('produtos.show', ['produto' => $produto]);
     }
 
     /**
@@ -64,7 +65,7 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        return view('produtos.create', ['produto' => $produto]);
+        return view('produtos.edit', ['produto' => $produto]);
     }
 
     /**
@@ -76,10 +77,7 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        $request->validate(Produto::$rules);
-        $project->update($request->all());
-
-        return view('produtos.update',['produto' => $produto]);
+        //
     }
 
     /**

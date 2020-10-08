@@ -33,6 +33,7 @@ Route::group(['middleware' => ['CheckFuncionario', 'verified']], function(){});
 
 Route::group(['middleware' => ['CheckCliente', 'verified']], function(){});
 
+
 /*Route::prefix('/user')->namespace('User')->group(function(){
     Route::prefix('/gerente')->namespace('Gerente')->group(function(){
         Route::prefix('/criar_produto')->namespace('NovoProduto')->group(function(){
@@ -50,6 +51,8 @@ Route::group(['middleware' => ['CheckCliente', 'verified']], function(){});
 });*/
 
 Route::resource("clientes", "ClienteController");
+
+Route::resource("produtos", "ProdutoController");
 
 Auth::routes();
 
