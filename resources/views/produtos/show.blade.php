@@ -7,10 +7,6 @@
             <div class="pull-left">
                 <h2> {{ $produto->nome }}</h2>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('produtos.index') }}" title="Go back"> <i
-                        class="fas fa-backward "></i> </a>
-            </div>
         </div>
     </div>
 
