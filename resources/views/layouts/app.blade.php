@@ -24,6 +24,7 @@
     <div id="app">
         @include('includes.navbar')
         <main class="container py-4">
+            @include('includes.messages')
             @yield('content')
         </main>
         @include('includes.footer')
