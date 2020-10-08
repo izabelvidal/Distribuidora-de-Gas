@@ -5,7 +5,7 @@
     <form>
         <div class="form-group">
             <label>Nome</label>
-            <input class="form-control" name="nome" type="text" placeholder="Nome" value="{{ old('nome') }}">
+            <input type="text" class="form-control" name="nome" placeholder="Nome" value="{{ old('nome') }}">
         </div>
 
         <div class="form-group">
