@@ -6,6 +6,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\VendaController;
+use App\Http\Middleware\CheckGerente;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,13 @@ use App\Http\Controllers\VendaController;
 |
 */
 
+Route::get('/gerente', function(){
+    return view('gerentes.create');
+});
 //gerente
-Route::group(['middleware' => ['CheckGerente', 'verified']], function(){
+Route::group(['middleware' => [CheckGerente::class, 'verified']], function(){
     Route::get('/home-gerente', [GerenteController::class, 'index'])->name('gerentes.index');
+    Route::get('/cadastrar', [GerenteController::class, 'index'])->name('gerentes.index');
 });
 
 Route::group(['middleware' => ['CheckFuncionario', 'verified']], function(){});
