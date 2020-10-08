@@ -26,7 +26,15 @@
         </div>
 
         <div class="form-row mt-3">
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <label>Data de Nascimento</label>
+                <input type="date" class="form-control" name="nascimento" value="{{ old('nascimento') }}">
+            </div>
+            <div class="col-md-4">
+                <label>CPF</label>
+                <input type="text" class="form-control" placeholder="CPF" name="CPF" value="{{ old('CPF') }}">
+            </div>
+            <div class="col-md-4">
                 <label>Telefone</label>
                 <input type="number" class="form-control" placeholder="Telefone" name="telefone" value="{{ old('telefone') }}">
             </div>

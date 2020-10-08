@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gerente;
+use App\Models\Pessoa;
+use App\Models\Endereco;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
