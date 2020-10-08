@@ -16,6 +16,7 @@ class CreateVendasTable extends Migration
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
             $table->string('forma_pagamento');
+            $table->bigInteger('quantidade');
             $table->unsignedFloat('preco', 8, 2)->nullable();
             $table->foreignId('cliente_id')->constrained();
             $table->foreignId('funcionario_id')->nullable($value = true)->constrained();

@@ -76,7 +76,8 @@ class VendaController extends Controller
      */
     public function edit(Venda $venda)
     {
-        //
+        return view('vendas.edit', ['venda' => $venda]);
+
     }
 
     /**
@@ -99,6 +100,8 @@ class VendaController extends Controller
      */
     public function destroy(Venda $venda)
     {
-        //
+        $venda->venda()->delete();
+        $venda->delete();
+        return redirect()->action([VendaController::class, 'index']);
     }
 }
