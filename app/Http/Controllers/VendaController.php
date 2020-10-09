@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Venda;
 use App\Models\Produto;
 use App\Models\Cliente;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
+use Exception;
+use Illuminate\Support\Facades\Validator;
 
 class VendaController extends Controller
 {
@@ -20,8 +23,8 @@ class VendaController extends Controller
      */
     public function index()
     {
-        $venda = Venda::all();
-        return view('vendas.index', ['vendas' => $venda]);
+        $vendas = Venda::all();
+        return view('vendas.index', ['vendas' => $vendas]);
     }
 
     /**
@@ -31,7 +34,8 @@ class VendaController extends Controller
      */
     public function create()
     {
-        return view('vendas.create');
+        $clientes = Cliente::all();
+        return view('vendas.create', ['clientes' => $clientes]);
     }
 
     /**
@@ -44,19 +48,38 @@ class VendaController extends Controller
     {
         $venda = new Venda();
         $venda->fill($request->validate(Venda::$rules));
-        $venda->data = date();
+        $cliente = Cliente::find($request->cliente_id);  
+        $venda->cliente()->associate($cliente);
         $venda->save();
-        foreach (Session::get('itens') as $key => $carrinho )
+        // foreach ($request->session()->get('itens') as $key => $carrinho )
+        // {
+        //     $produto = Produto::find($key);
+        //     if($produto->quantidade_em_estoque < $carrinho['quantidade']){
+        //         throw new Exception('quantidade maior do que em estoque');
+        //     }
+        // }
+        foreach ($request->session()->get('itens') as $key => $carrinho )
         {
             $produto = Produto::find($key);
             $item = new Item();
-            $item->produto()->associate($produto);
             $item->quantidade = $carrinho['quantidade'];
+            $item->produto()->associate($produto);
+            // $rules = Item::$rules;
+            // $rules['quantidade'] = 'required|max:' . $produto->quantidade_em_estoque;
+            $validator = Validator::make(
+                $item->toArray(),
+                ['quantidade' => 'required|max:'.$produto->quantidade_em_estoque]
+            );
+            if ($validator->fails()) {
+                return redirect('vendas/create')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+            $produto->quantidade_em_estoque -= $carrinho['quantidade'];
+            $produto->save();
             $item->preco = $item->quantidade * $produto->preço;
             $venda->items()->save($item);
         }
-        $cliente = Cliente::find($request->cliente_id);  
-        $venda->cliente()->associate($cliente);
         return redirect()->action([VendaController::class, 'show'], ['venda' => $venda]);
     }
 

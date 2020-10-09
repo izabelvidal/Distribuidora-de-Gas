@@ -14,7 +14,6 @@ class Item extends Model
     ];
 
     public static $rules = [
-        'quantidade' => 'required',
     ];
 
     public function produto()

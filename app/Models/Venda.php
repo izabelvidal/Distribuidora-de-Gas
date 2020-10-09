@@ -11,12 +11,11 @@ class Venda extends Model
     use hasFactory;
 
     protected $fillable = [
-        'preco',
+        'preco', 'forma_pagamento'
     ];
 
     public static $rules = [
-        'cliente_id' => 'required',
-        'preco' => 'required|numeric|min:30',
+        'forma_pagamento' => 'required'
     ];
 
     public static $messages = [

@@ -39,6 +39,7 @@ class CarrinhoController extends Controller
             unset($carrinho[$produto_id]);
          } 
         $request->session()->put('itens', $carrinho);
-        return view('carrinho');
+        $clientes = Cliente::all();
+        return view('carrinho', ['clientes' => $clientes]);
     }
 }

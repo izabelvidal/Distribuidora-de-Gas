@@ -14,7 +14,6 @@
         @foreach($vendas as $venda)
             <tr>
                 <td>{{ $venda->cliente->pessoa->nome }}</td>
-                <td>{{ $venda->data }}</td>
                 <td>{{ $venda->forma_pagamento }}</td>
                 <td>
                     <a href="{{route("vendas.show", [$venda])}}">visualizar</a>
