@@ -6,12 +6,12 @@ use App\Models\Venda;
 use App\Models\Produto;
 use App\Models\Cliente;
 use App\Models\Item;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Redirect;
-use Exception;
 use Illuminate\Support\Facades\Validator;
 
 class VendaController extends Controller
@@ -19,7 +19,7 @@ class VendaController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|Response
      */
     public function index()
     {
@@ -30,7 +30,7 @@ class VendaController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|Response
      */
     public function create()
     {
@@ -41,40 +41,26 @@ class VendaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
         $venda = new Venda();
         $venda->fill($request->validate(Venda::$rules));
-        $cliente = Cliente::find($request->cliente_id);  
+        $cliente = Cliente::find($request->cliente_id);
         $venda->cliente()->associate($cliente);
         $venda->save();
-        // foreach ($request->session()->get('itens') as $key => $carrinho )
-        // {
-        //     $produto = Produto::find($key);
-        //     if($produto->quantidade_em_estoque < $carrinho['quantidade']){
-        //         throw new Exception('quantidade maior do que em estoque');
-        //     }
-        // }
         foreach ($request->session()->get('itens') as $key => $carrinho )
         {
             $produto = Produto::find($key);
             $item = new Item();
             $item->quantidade = $carrinho['quantidade'];
             $item->produto()->associate($produto);
-            // $rules = Item::$rules;
-            // $rules['quantidade'] = 'required|max:' . $produto->quantidade_em_estoque;
-            $validator = Validator::make(
+            Validator::make(
                 $item->toArray(),
-                ['quantidade' => 'required|max:'.$produto->quantidade_em_estoque]
-            );
-            if ($validator->fails()) {
-                return redirect('vendas/create')
-                    ->withErrors($validator)
-                    ->withInput();
-            }
+                ['quantidade' => "required|numeric|max:" . $produto->quantidade_em_estoque,]
+            )->validate();
             $produto->quantidade_em_estoque -= $carrinho['quantidade'];
             $produto->save();
             $item->preco = $item->quantidade * $produto->preço;
@@ -86,8 +72,8 @@ class VendaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Venda  $venda
-     * @return \Illuminate\Http\Response
+     * @param Venda $venda
+     * @return Application|Factory|View|Response
      */
     public function show(Venda $venda)
     {
@@ -97,8 +83,8 @@ class VendaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Venda  $venda
-     * @return \Illuminate\Http\Response
+     * @param Venda $venda
+     * @return RedirectResponse
      */
     public function destroy(Venda $venda)
     {
