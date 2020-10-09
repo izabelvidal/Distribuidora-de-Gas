@@ -15,7 +15,6 @@ class CreateClientesTable extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->string('telefone');
             $table->enum('tipo', ['consumidor', 'revendedor']);
             $table->foreignId('pessoa_id')->constrained();
             $table->timestamps();

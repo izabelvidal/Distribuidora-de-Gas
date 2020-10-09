@@ -2,16 +2,16 @@
 
 @section('content')
 
-<form action="">
-
+<form action="/vendas" method="post">
+    @csrf
     <div class="form-row">
         <div class="col">
             <label> Nome do Produto</label>
-            <input class="form-control" type="text" placeholder="Nome" name="nome" >
+            <input class="form-control" type="text" placeholder="Nome" name="nome"  >
         </div>
         <div class="col">
             <label>Marca</label>
-            <input class="form-control" type="text" placeholder="Marca" name="marca">
+            <input class="form-control" type="text" placeholder="Marca" name="marca" >
         </div>
     </div>
 
@@ -21,8 +21,8 @@
             <input class="form-control" type="number" placeholder="Quantidade" name="quantidade" value="Quantidade">
         </div>
         <div class="col">
-        <label>Estado</label>
-                <select id="estado" name="estado" class="form-control">
+        <label>forma de pagamento</label>
+                <select id="forma_pagamento" name="forma de pagamento" class="form-control">
                 <option selected disabled value="">Selecionar Pagamento</option>
                     <option value="Dinheiro">Dinheiro</option>
                     <option value="Credito">Crédito</option>

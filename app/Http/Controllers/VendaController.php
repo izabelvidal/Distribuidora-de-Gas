@@ -8,6 +8,8 @@ use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
 
 class VendaController extends Controller
 {
@@ -43,8 +45,8 @@ class VendaController extends Controller
     public function store(Request $request)
     {
         $venda = new Venda();
-        $venda->fill($Request->validate(venda::$rules));
-        $vendas->save();
+        $venda->fill($request->validate(venda::$rules));
+        $venda->save();
         $produto = Produto::find($request->produto_id);
         $cliente = Cliente::find($request->cliente_id);  
         $item = new Item();

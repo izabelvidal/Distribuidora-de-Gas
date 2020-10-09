@@ -29,6 +29,8 @@ class VendaFactory extends Factory
             'cliente_id' => Cliente::factory()->create()->getKey(),
             'funcionario_id' => Funcionario::factory()->create()->getKey(),
             'gerente_id' => Gerente::factory()->create()->getKey(),
+            'forma_pagamento' => $this->faker->randomElement(['Dinheiro', 'Cartão', 'Debito']),
+
         ];
     }
 
