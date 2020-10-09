@@ -85,7 +85,15 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        $cliente->fill($request->validate(Cliente::$rules));
+        $cliente->save();
+        $rules = Pessoa::$rules;
+        unset($rules['senha']);
+        $cliente->pessoa->fill($request->validate($rules));
+        $cliente->pessoa->save();
+        $cliente->pessoa->endereco->fill($request->validate(Endereco::$rules));
+        $cliente->pessoa->endereco->save();
+        return redirect()->action([ClienteController::class, 'show'], ['cliente' => $cliente->refresh()]);
     }
 
     /**
