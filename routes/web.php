@@ -52,7 +52,7 @@ Route::group(['middleware' => ['CheckCliente', 'verified']], function(){});
 
 Route::resource("clientes", "ClienteController");
 Route::resource("gerentes", "GerenteController");
-
+Route::resource("vendas", "VendaController");
 Route::resource("produtos", "ProdutoController");
 
 Auth::routes();
