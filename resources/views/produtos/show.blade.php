@@ -21,6 +21,7 @@
             <label for="peso">peso:</label>
             <input class="form-control" type="number" name="peso" id="peso" value="{{ $produto->peso }}" readonly>
         </div>
+    
     <div class="form-row">
         <div class="col-md-4">
             <label for="preco">preço:</label>
