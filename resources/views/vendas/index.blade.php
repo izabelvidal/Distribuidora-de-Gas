@@ -8,7 +8,8 @@
             <th>Marca</th>
             <th>Quantidade</th>
             <th>Forma de pagamento</th>
-        </tr>
+            <th>Opções</th>
+        </tr> 
         </thead>
         <tbody>
         @foreach($vendas as $venda)
@@ -16,7 +17,7 @@
                 <td>{{ $venda->produto->nome }}</td>
                 <td>{{ $venda->produto->marca }}</td>
                 <td>{{ $venda->quantidade }}</td>
-                <td>{{ $venda->Forma de pagamento }}</td>
+                <td>{{ $venda->forma_pagamento }}</td>
                 <td>
                     <a href="{{route("vendas.edit", [$venda])}}">editar</a>
                     <a href="{{route("vendas.show", [$venda])}}">visualizar</a>

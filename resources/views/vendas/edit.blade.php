@@ -2,12 +2,13 @@
 
 @section('content')
 
-<form action="">
-
-    <div class="form-row">
+<div class="form-row">
+    <form action="{{route('vendas.update', $venda)}}" method="POST">
+        @method('PUT')
+        @csrf
         <div class="col">
             <label> Nome do Produto</label>
-            <input class="form-control" type="text" placeholder="Nome" name="nome" >
+            <input class="form-control" type="text" placeholder="Nome" name="nome" value="Nome">
         </div>
         <div class="col">
             <label>Marca</label>
@@ -32,8 +33,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary my-5">Confirmar</button>
-</form>
-        
     </form>
+</div>
     
 @endsection

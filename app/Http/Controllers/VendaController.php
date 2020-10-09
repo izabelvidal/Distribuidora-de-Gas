@@ -6,6 +6,8 @@ use App\Models\Venda;
 use App\Models\Produto;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class VendaController extends Controller
 {
@@ -64,7 +66,7 @@ class VendaController extends Controller
      */
     public function show(Venda $venda)
     {
-        return 'CRIOU';
+        return view('vendas.show', ['vendas' => $venda]);
 
 
     }
@@ -90,7 +92,9 @@ class VendaController extends Controller
      */
     public function update(Request $request, Venda $venda)
     {
-        //
+        $venda->fill($request->validate(Venda::$rules));
+        $venda->save();
+        return redirect()->action([VendaController::class, 'show'], ['Venda' => $venda->refresh()]);
     }
 
     /**
