@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GerenteController;
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\ProdutoController;
@@ -54,7 +55,11 @@ Route::resource("clientes", "ClienteController");
 Route::resource("gerentes", "GerenteController");
 Route::resource("vendas", "VendaController");
 Route::resource("produtos", "ProdutoController");
-
+Route::post('/adicionar', [CarrinhoController::class, 'adicionar'])->name('adicionar');
+Route::get('/remover/{produto_id}', [CarrinhoController::class, 'remover'])->name('remover');
+Route::get('/carrinho', function () {
+    return view('carrinho');
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

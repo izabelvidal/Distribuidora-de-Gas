@@ -13,15 +13,17 @@
         </tr>
         </thead>
         <tbody>
+        @foreach ($venda->items as $item )
             <tr>
-                <td>{{ $venda->produto->nome }}</td>
-                <td>{{ $venda->produto->marca }}</td>
-                <td>{{ $venda->quantidade }}</td>
+                <td>{{ $item->produto->nome }}</td>
+                <td>{{ $item->produto->marca }}</td>
+                <td>{{ $item->quantidade }}</td>
                 <td>{{ $venda->forma_pagamento }}</td>
-                <td>
-                    <a href="{{route("vendas.index", [$venda])}}"">voltar</a>
-                </td>
             </tr>
+        @endforeach
+        <tr>
+            <a href="{{route("vendas.index", [$venda])}}"">voltar</a>
+        </tr>
         </tbody>
     </table>
 @endsection
