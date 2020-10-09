@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venda;
+use App\Models\Produto;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class VendaController extends Controller
@@ -14,7 +16,8 @@ class VendaController extends Controller
      */
     public function index()
     {
-        //
+        $venda = Venda::all();
+        return view('vendas.index', ['vendas' => $venda]);
     }
 
     /**
@@ -24,9 +27,7 @@ class VendaController extends Controller
      */
     public function create()
     {
-        $produtos = Produto::all();
-        $clientes = Cliente::all();
-        return view('vendas.create', [produtos => $produtos,'clientes' => $clientes]);
+        return view('vendas.create');
 
 
     }
