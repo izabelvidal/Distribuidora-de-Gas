@@ -3,6 +3,7 @@
 @section('content')
 
     <form action="{{route('gerentes.update', $gerente)}}" method="POST">
+        @method('PUT')
         @csrf
         <div class="form-group">
             <label>Nome</label>
@@ -21,14 +22,14 @@
             </div>
             <div class="col">
                 <label>Confirmar Senha</label>
-                <input class="form-control" type="password" placeholder="Confirmar senha" name="senha_confirmation" id="senha" value="{{ $gerente->pessoa->senha-confirmation }}">
+                <input class="form-control" type="password" placeholder="Confirmar senha" name="senha_confirmation" id="senha" value="{{ $gerente->pessoa->senha_confirmation }}">
             </div>
         </div>
 
         <div class="form-row mt-3">
             <div class="col-md-6">
                 <label>Telefone</label>
-                <input type="number" class="form-control" placeholder="Telefone" name="telefone" value="{{ $gerente->pessoa->telefone' }}">
+                <input type="number" class="form-control" placeholder="Telefone" name="telefone" value="{{ $gerente->pessoa->telefone }}">
             </div>
         </div>
         <div class="form-row mt-3">
@@ -53,7 +54,7 @@
             </div>
             <div class="form-group col-md-2">
                 <label>CEP</label>
-                <input type="text" class="form-control" name="CEP" id="CEP" placeholder="Ex: 55158-400" value="$gerente->pessoa->endereco->\cep">
+                <input type="text" class="form-control" name="CEP" id="CEP" placeholder="Ex: 55158-400" value="{{ $gerente->pessoa->endereco->cep }}">
             </div>
         </div>
     
