@@ -7,6 +7,7 @@ use App\Models\Pessoa;
 use App\Models\Endereco;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class GerenteController extends Controller
@@ -52,6 +53,7 @@ class GerenteController extends Controller
         $pessoa->save();
 
         $gerente->pessoa()->associate($pessoa);
+
         $pessoa->endereco()->save($endereco);
         $gerente->save();
 
@@ -89,7 +91,15 @@ class GerenteController extends Controller
      */
     public function update(Request $request, Gerente $gerente)
     {
-        //
+        $gerente->fill($request->validate(Gerente::$rules));
+        $gerente->save();
+        $rules = Pessoa::$rules;
+        unset($rules['senha']);
+        $gerente->pessoa->fill($request->validate($rules));
+        $gerente->pessoa->save();
+        $gerente->pessoa->endereco->fill($request->validate(Endereco::$rules));
+        $gerente->pessoa->endereco->save();
+        return redirect()->action([GerenteController::class, 'show'], ['gerente' => $gerente->refresh()]);
     }
 
     /**

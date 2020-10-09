@@ -28,7 +28,7 @@
         <div class="form-row mt-3">
             <div class="col-md-6">
                 <label>Telefone</label>
-                <input type="number" class="form-control" placeholder="Telefone" name="telefone" value="{{ $gerente->pessoa->telefone' }}">
+                <input type="number" class="form-control" placeholder="Telefone" name="telefone" value="{{ $gerente->telefone' }}">
             </div>
         </div>
         <div class="form-row mt-3">

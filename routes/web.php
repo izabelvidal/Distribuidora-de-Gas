@@ -24,14 +24,14 @@ use App\Http\Middleware\CheckGerente;
 });*/
 
 //gerente
-Route::group(['middleware' => [CheckGerente::class, 'verified']], function(){
+/*Route::group(['middleware' => [CheckGerente::class, 'verified']], function(){
     Route::get('/home-gerente', [GerenteController::class, 'index'])->name('gerentes.index');
     Route::get('/cadastrar', [GerenteController::class, 'index'])->name('gerentes.index');
 });
 
 Route::group(['middleware' => ['CheckFuncionario', 'verified']], function(){});
 
-Route::group(['middleware' => ['CheckCliente', 'verified']], function(){});
+Route::group(['middleware' => ['CheckCliente', 'verified']], function(){});*/
 
 
 /*Route::prefix('/user')->namespace('User')->group(function(){

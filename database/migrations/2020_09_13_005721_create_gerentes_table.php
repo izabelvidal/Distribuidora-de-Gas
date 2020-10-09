@@ -15,6 +15,7 @@ class CreateGerentesTable extends Migration
     {
         Schema::create('gerentes', function (Blueprint $table) {
             $table->id();
+            $table->string('telefone');
             $table->foreignId('pessoa_id')->constrained();
             $table->timestamps();
         });

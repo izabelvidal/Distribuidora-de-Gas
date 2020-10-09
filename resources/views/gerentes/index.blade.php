@@ -17,8 +17,8 @@
                 <td>{{ $gerente->pessoa->CPF }}</td>
                 <td>{{ $gerente->pessoa->email }}</td>
                 <td>
-                    <a href="{{route('gerentes.edit', [$gerente])}}">editar</a>
-                    <a href="{{route('gerentes.show', [$gerente])}}">visualizar</a>
+                    <a href="{{route("gerentes.edit", [$gerente])}}">editar</a>
+                    <a href="{{route("gerentes.show", [$gerente])}}">visualizar</a>
                 </td>
             </tr>
         @endforeach
