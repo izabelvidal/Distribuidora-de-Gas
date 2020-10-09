@@ -21,7 +21,7 @@ class Produto extends Model
     public static $rules = [
         'nome' => 'required|min:5|max:100',
         'marca' => 'required|min:5|max:100',
-        'quantidade_em_estoque' => 'required|numeric|min:1',
+        'quantidade_em_estoque' => 'required|numeric|min:0',
         'peso' => 'required|numeric|min:13',
         'preco' => 'required|numeric|min:40',
         'preco_revenda' => 'required|numeric|min:30'
