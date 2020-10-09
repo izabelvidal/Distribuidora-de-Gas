@@ -2,54 +2,30 @@
 
 
 @section('content')
-<div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Informações do produto</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('produtos.index') }}" title="Go back"> <i
-                        class="fas fa-backward "></i> </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Nome:</strong>
-                {{ $produto->nome }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Marca:</strong>
-                {{ $produto->marca }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Quantidade em estoque:</strong>
-                {{ $produto->quantidade_em_estoque }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Peso:</strong>
-                {{ $produto->peso }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Preço:</strong>
-                {{ $produto->preco }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Preço de revenda:</strong>
-                {{ $produto->preco_revenda }}
-            </div>
-        </div>
-    </div> 
+<table class="table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Marca</th>
+            <th>Quatidade em estoque</th>
+            <th>Peso</th>
+            <th>Preço</th>
+            <th>Preço de revenda</th>
+            <th>Opção</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ $produto->nome }}</td>
+                <td>{{ $produto->marca }}</td>
+                <td>{{ $produto->quantidade_em_estoque }}</td>
+                <td>{{ $produto->peso }}</td>
+                <td>{{ $produto->preco }}</td>
+                <td>{{ $produto->preco_revenda }}</td>
+                <td>
+                    <a href="{{route("produtos.index", [$produto])}}"">voltar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 @endsection

@@ -77,7 +77,9 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        $produto->fill($request->validate(Produto::$rules));
+        $produto->save();
+        return redirect()->action([ProdutoController::class, 'show'], ['produto' => $produto->refresh()]);
     }
 
     /**
