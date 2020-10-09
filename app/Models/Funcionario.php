@@ -8,6 +8,10 @@ class Funcionario extends Pessoa
 {
     use hasFactory;
 
+    protected $fillable = [];
+
+    public static $rules = [];
+
     public function vendas()
     {
         return $this->hasMany('App\Models\Venda');

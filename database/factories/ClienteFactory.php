@@ -23,7 +23,6 @@ class ClienteFactory extends Factory
     public function definition()
     {
         return [
-            'telefone' => $this->faker->phoneNumber,
             'tipo' => $this->faker->randomElement(['consumidor', 'revendedor']),
             'pessoa_id' => Pessoa::factory()->create()->getKey()
         ];

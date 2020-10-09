@@ -15,7 +15,7 @@ class Pessoa extends Model
      * @var array
      */
     protected $fillable = [
-        'nome', 'email', 'senha', 'CPF', 'nascimento'
+        'nome', 'email', 'senha', 'CPF', 'nascimento', 'telefone'
     ];
 
     public static $rules = [
@@ -23,6 +23,7 @@ class Pessoa extends Model
         'email' => 'required|email',
         'senha' => 'required|min:8|confirmed',
         'CPF' => 'required|cpf',
+        'telefone' => 'required',
         'nascimento' => 'required|date'
     ];
 

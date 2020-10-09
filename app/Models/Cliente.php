@@ -9,12 +9,11 @@ class Cliente extends Pessoa
     use hasFactory;
 
     protected $fillable = [
-        'tipo', 'telefone'
+        'tipo'
     ];
 
     public static $rules = [
         'tipo' => 'required',
-        'telefone' => 'required',
     ];
     public function vendas()
     {

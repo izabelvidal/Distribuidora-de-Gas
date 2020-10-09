@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Gerente extends Pessoa
 {
     use hasFactory;
+    
+    protected $fillable = [];
+
+    public static $rules = [];
 
     public function vendas()
     {
