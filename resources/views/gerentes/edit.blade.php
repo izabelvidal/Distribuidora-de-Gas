@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form action="/gerentes" method="post">
+    <form action="{{route('gerentes.update', $gerente)}}" method="post">
         @csrf
         <div class="form-group">
             <label>Nome</label>
