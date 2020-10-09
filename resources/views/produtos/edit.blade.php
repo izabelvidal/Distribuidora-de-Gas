@@ -3,12 +3,8 @@
 @section('content')
 
 <div class="container mx-5">
-<<<<<<< HEAD
     <form action="{{route('produtos.update', $produto)}}" method="POST">
         @method('PUT')
-=======
-    <form action="/produtos" method="post">
->>>>>>> 43f079c6348bda15a49942954d77178f55a88a19
         @csrf
         <div class="form-row">
             <div class="col-md-8">
