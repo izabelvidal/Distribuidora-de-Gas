@@ -57,6 +57,9 @@ Route::resource("vendas", "VendaController");
 Route::resource("produtos", "ProdutoController");
 Route::post('/adicionar', [CarrinhoController::class, 'adicionar'])->name('adicionar');
 Route::get('/remover/{produto_id}', [CarrinhoController::class, 'remover'])->name('remover');
+Route::get('/carrinho', function () {
+    return view('carrinho');
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
