@@ -2,31 +2,38 @@
 
 @section('content')
 
+<form action="">
 
-        <div class="form-group">
-            <label>quantidade</label>
-            <input type="number" class="form-control" aria-describedby="quantidade" placeholder="Quantidade" value="{{ old('quantidade') }}">
+    <div class="form-row">
+        <div class="col">
+            <label> Nome do Produto</label>
+            <input class="form-control" type="text" placeholder="Nome" name="nome" value="Nome">
         </div>
-        <div class="form-group">
-            <label>produto</label>
-            <input type="text" class="form-control" aria-describedby="produto" placeholder="produto" value="{{ old('nome') }}">
+        <div class="col">
+            <label>Marca</label>
+            <input class="form-control" type="text" placeholder="Marca" name="marca">
         </div>
-        <div class="form-group">
-            <label>marca</label>
-            <input type="text" class="form-control" aria-describedby="marca" placeholder="Quantidade" value="{{ old('marca') }}">
+    </div>
+
+    <div class="form-row">
+        <div class="col">
+            <label>Quantidade</label>
+            <input class="form-control" type="number" placeholder="Quantidade" name="quantidade" value="Quantidade">
         </div>
-        <div class="col-auto my-1">
-      <label class="mr-sm-2" for="inlineFormCustomSelect">forma de pagamento</label>
-      <select class="custom-select mr-sm-2" name="forma_pagamento">
-        <option selected>Forma de pagamento</option>
-        <option value="1">Dinheiro</option>
-        <option value="2">Credito</option>
-        <option value="3">Debito</option>
-      </select>
-    </div> 
-    
+        <div class="col">
+        <label>Estado</label>
+                <select id="estado" name="estado" class="form-control">
+                <option selected disabled value="">Selecionar Pagamento</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Credito">Crédito</option>
+                    <option value="Debito">Débito</option>
+                </select>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary my-5">Confirmar</button>
+</form>
         
-        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     
 @endsection
