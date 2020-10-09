@@ -9,7 +9,7 @@
             <th>Quantidade</th>
             <th>Forma de pagamento</th>
             <th>Opções</th>
-        </tr>
+        </tr> 
         </thead>
         <tbody>
         @foreach($vendas as $venda)
