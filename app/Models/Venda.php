@@ -11,19 +11,17 @@ class Venda extends Model
     use hasFactory;
 
     protected $fillable = [
-        'preco', 'data'
+        'preco',
     ];
 
     public static $rules = [
         'cliente_id' => 'required',
         'preco' => 'required|numeric|min:30',
-        'data' => 'required|data',
     ];
 
     public static $messages = [
         'cliente_id.*' => 'O campo Cliente id',
         'preco.*' => 'O campo preço é obrigatório e deve ser de no mínimo R$30,00',
-        'data.*' => 'O campo data é obrigatório',
     ];
 
     public function cliente()

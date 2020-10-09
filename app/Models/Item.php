@@ -9,6 +9,14 @@ class Item extends Model
 {
     use hasFactory;
 
+    protected $fillable = [
+        'quantidade', 'preco'
+    ];
+
+    public static $rules = [
+        'quantidade' => 'required',
+    ];
+
     public function produto()
     {
         return $this->belongsTo('App\Models\Produto');

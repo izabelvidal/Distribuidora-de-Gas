@@ -28,4 +28,10 @@
             </tr>
         </tbody>
     </table>
+    <form action="{{ route('adicionar') }}" method="post" >
+        @csrf
+        <input type="hidden" name="produto_id" value="{{ $produto->id }}" />
+        Quantidade: <input type="number" name="quantidade" min='1' max='10' value='1' />
+        <input type="submit" value="Add" />
+    </form>
 @endsection

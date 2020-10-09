@@ -17,17 +17,13 @@
 
     <div class="form-row">
         <div class="col">
-            <label>Quantidade</label>
-            <input class="form-control" type="number" placeholder="Quantidade" name="quantidade" value="Quantidade">
-        </div>
-        <div class="col">
-        <label>forma de pagamento</label>
-                <select id="forma_pagamento" name="forma de pagamento" class="form-control">
-                <option selected disabled value="">Selecionar Pagamento</option>
-                    <option value="Dinheiro">Dinheiro</option>
-                    <option value="Credito">Crédito</option>
-                    <option value="Debito">Débito</option>
-                </select>
+            <label>forma de pagamento</label>
+            <select id="forma_pagamento" name="forma_pagamento" class="form-control">
+            <option selected disabled value="">Selecionar Pagamento</option>
+                <option value="Dinheiro">Dinheiro</option>
+                <option value="Credito">Crédito</option>
+                <option value="Debito">Débito</option>
+            </select>
         </div>
     </div>
 

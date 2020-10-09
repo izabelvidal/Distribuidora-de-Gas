@@ -32,8 +32,6 @@ class VendaController extends Controller
     public function create()
     {
         return view('vendas.create');
-
-
     }
 
     /**
@@ -45,19 +43,21 @@ class VendaController extends Controller
     public function store(Request $request)
     {
         $venda = new Venda();
-        $venda->fill($request->validate(venda::$rules));
+        $venda->fill($request->validate(Venda::$rules));
+        $venda->data = date();
         $venda->save();
-        $produto = Produto::find($request->produto_id);
+        foreach (Session::get('itens') as $key => $carrinho )
+        {
+            $produto = Produto::find($key);
+            $item = new Item();
+            $item->produto()->associate($produto);
+            $item->quantidade = $carrinho['quantidade'];
+            $item->preco = $item->quantidade * $produto->preço;
+            $venda->items()->save($item);
+        }
         $cliente = Cliente::find($request->cliente_id);  
-        $item = new Item();
-        $item->produto()->associate($produto);
-        $item-> quantidade = $request->quantidade;
-        $item->preco = $item->quantidade * $produto->preço;
-        $venda->items()->save($item);
         $venda->cliente()->associate($cliente);
         return redirect()->action([VendaController::class, 'show'], ['venda' => $venda]);
-
-
     }
 
     /**
@@ -68,35 +68,7 @@ class VendaController extends Controller
      */
     public function show(Venda $venda)
     {
-        return view('vendas.show', ['vendas' => $venda]);
-
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Venda  $venda
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Venda $venda)
-    {
-        return view('vendas.edit', ['venda' => $venda]);
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Venda  $venda
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Venda $venda)
-    {
-        $venda->fill($request->validate(Venda::$rules));
-        $venda->save();
-        return redirect()->action([VendaController::class, 'show'], ['Venda' => $venda->refresh()]);
+        return view('vendas.show', ['venda' => $venda]);
     }
 
     /**
