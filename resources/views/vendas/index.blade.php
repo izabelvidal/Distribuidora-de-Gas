@@ -7,13 +7,14 @@
             <th>Cliente</th>
             <th>Data</th>
             <th>Forma de pagamento</th>
-            <th>Opções</th>
-        </tr> 
+            <th>Opção</th>
+        </tr>
         </thead>
         <tbody>
         @foreach($vendas as $venda)
             <tr>
                 <td>{{ $venda->cliente->pessoa->nome }}</td>
+                <td>{{ $venda->created_at }}</td>
                 <td>{{ $venda->forma_pagamento }}</td>
                 <td>
                     <a href="{{route("vendas.show", [$venda])}}">visualizar</a>
