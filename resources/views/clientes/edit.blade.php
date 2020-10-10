@@ -25,7 +25,7 @@
         <div class="form-row">
             <div class="col-md-4">
                 <label for="telefone">telefone:</label>
-                <input class="form-control" type="text" name="telefone" id="telefone" value="{{ $cliente->telefone }}">
+                <input class="form-control" type="text" name="telefone" id="telefone" value="{{ $cliente->pessoa->telefone }}">
             </div>
             <div class="col-md-4">
                 <label for="CPF">CPF:</label>
