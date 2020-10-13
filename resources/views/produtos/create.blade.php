@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <input class="btn btn-primary" type="submit" value="cadastrar">    
+        <input class="btn btn-primary my-5" type="submit" value="cadastrar">    
     </form>
 </div>
 @endsection
