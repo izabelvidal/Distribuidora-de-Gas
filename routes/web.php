@@ -55,11 +55,12 @@ Route::resource("clientes", "ClienteController");
 Route::resource("gerentes", "GerenteController");
 Route::resource("vendas", "VendaController");
 Route::resource("produtos", "ProdutoController");
-Route::post('/adicionar', [CarrinhoController::class, 'adicionar'])->name('adicionar');
-Route::get('/remover/{produto_id}', [CarrinhoController::class, 'remover'])->name('remover');
-Route::get('/carrinho', function () {
-    return view('carrinho');
-});
+
+Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
+Route::post('/carrinho', [CarrinhoController::class, 'store'])->name('carrinho.store');
+Route::put('/carrinho/{produto_id}', [CarrinhoController::class, 'update'])->name('carrinho.update');
+Route::delete('/carrinho/{produto_id}', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
