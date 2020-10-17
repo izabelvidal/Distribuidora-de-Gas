@@ -36,13 +36,13 @@
                    value="{{ $produto->preco_revenda }}" readonly>
         </div>
     </div>
-    <form class="form-group" action="{{ route('adicionar') }}" method="post">
+    <form class="form-group" action="/carrinho" method="post">
         @csrf
         <div class="form-row">
             <input type="hidden" name="produto_id" value="{{ $produto->id }}"/>
             <div class="col-md-2">
                 <label for="quantidade">quantidade:</label>
-                <input class="form-control" type="number" name="quantidade" min='1' max='10' value='1'/>
+                <input class="form-control" type="number" name="quantidade" min='1' max='{{$produto->quantidade_em_estoque}}' value='1'/>
             </div>
         </div>
         <input class="btn btn-primary" type="submit" value="adicionar">
