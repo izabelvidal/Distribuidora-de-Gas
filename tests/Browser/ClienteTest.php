@@ -5,6 +5,8 @@ namespace Tests\Browser;
 use App\Models\Cliente;
 use App\Models\Endereco;
 use App\Models\Pessoa;
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverDimension;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -16,7 +18,7 @@ class ClienteTest extends DuskTestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testDeveCadastrarClienteCorretamente()
     {
         $cliente = Cliente::factory()->make(["pessoa_id" => 0]);
         $cliente->pessoa = Pessoa::factory()->make();
@@ -24,10 +26,10 @@ class ClienteTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($cliente) {
             $browser->visit('/clientes/create')
                 ->radio('tipo', 'consumidor')
-                ->type('telefone', $cliente->telefone)
+                ->type('telefone', $cliente->pessoa->telefone)
                 ->type('email', $cliente->pessoa->email)
                 ->type('nome', $cliente->pessoa->nome)
-                ->type('nascimento', $cliente->pessoa->nascimento)
+                ->type('nascimento', date('dmY'))
                 ->type('CPF', $cliente->pessoa->CPF)
                 ->type('senha', $cliente->pessoa->senha)
                 ->type('senha_confirmation', $cliente->pessoa->senha)
@@ -36,9 +38,10 @@ class ClienteTest extends DuskTestCase
                 ->type('numero', $cliente->pessoa->endereco->numero)
                 ->type('CEP', $cliente->pessoa->endereco->CEP)
                 ->type('bairro', $cliente->pessoa->endereco->bairro)
-                ->pause(2000)
+                ->screenshot('cliente_pre_cadastro')
                 ->press('cadastrar')
-                ->assertSee($cliente->pessoa->nome);
+                ->screenshot('cliente_cadastrado')
+                ->assertPathIsNot('/clientes/create');
         });
     }
 }
