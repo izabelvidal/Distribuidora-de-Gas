@@ -2,7 +2,7 @@
 
 
 @section('content')
-<table class="table">
+    <table class="table">
         <thead>
         <tr>
             <th>Nome do produto</th>
@@ -21,7 +21,9 @@
             </tr>
         @endforeach
         <tr>
-            <a href="{{route("vendas.index")}}">voltar</a>
+            <td>
+                <a href="{{route("vendas.index")}}">voltar</a>
+            </td>
         </tr>
         </tbody>
     </table>
