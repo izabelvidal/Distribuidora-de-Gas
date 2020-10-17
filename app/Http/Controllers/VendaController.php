@@ -51,6 +51,11 @@ class VendaController extends Controller
         $cliente = Cliente::find($request->cliente_id);
         $venda->cliente()->associate($cliente);
         $venda->save();
+        Validator::make(
+            ['hi' => $request->session()->get('itens')],
+            ['hi' => 'required'],
+            ['hi.*' => 'O carrinho não pode estar vazio']
+        )->validate();
         foreach ($request->session()->get('itens') as $carrinho )
         {
             $produto = $carrinho['produto'];
@@ -59,14 +64,15 @@ class VendaController extends Controller
             $item->produto()->associate($produto);
             Validator::make(
                 $item->toArray(),
-                ['quantidade' => "required|numeric|max:" . $produto->quantidade_em_estoque,]
+                ['quantidade' => "required|numeric|min:1|max:" . $produto->quantidade_em_estoque,]
             )->validate();
             $produto->quantidade_em_estoque -= $item->quantidade;
             $produto->save();
             $item->preco = $item->quantidade * $produto->preço;
             $venda->items()->save($item);
         }
-        $request->session()->forget('itens');
+        $request->session()->put('itens', []);
+        $request->session()->put('total', 0);
         return redirect()->action([VendaController::class, 'show'], ['venda' => $venda]);
     }
 
