@@ -66,8 +66,7 @@ class VendaController extends Controller
                 $item->toArray(),
                 ['quantidade' => "required|numeric|min:1|max:" . $produto->quantidade_em_estoque,]
             )->validate();
-            $produto->quantidade_em_estoque -= $item->quantidade;
-            $produto->save();
+            $produto->remover_de_estoque($item->quantidade);
             $item->preco = $item->quantidade * $produto->preço;
             $venda->items()->save($item);
         }

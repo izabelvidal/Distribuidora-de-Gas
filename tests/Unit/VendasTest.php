@@ -5,23 +5,19 @@ namespace Tests\Unit;
 use App\Models\Item;
 use App\Models\Produto;
 use App\Models\Venda;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class VendasTest extends TestCase
 {
-    
     public function testRetiradaDoEstoque()
     {
-        $Venda = venda::factory()->make();
-        $item = Item::factory()-> make(['quantidade' => 1]);
-        $produto = Produto::factory() -> make(['quantidade_em_estoque'=> 3]);
-        $item->produto()->save($produto);
-        $item->retirar_de_estoque();
-        $venda->items()->save($item);
+        $venda = venda::factory()->make();
         $venda->save();
-        $this->assertThat($produto->refresh()->quantidade_em_estoque, 2);
-
-
-    
+        $item = Item::factory()->make(['quantidade' => 1]);
+        $produto = Produto::factory()->create(['quantidade_em_estoque' => 3]);
+        $item->produto()->associate($produto);
+        $produto->remover_de_estoque($item->quantidade);
+        $venda->items()->save($item);
+        $this->assertEquals($produto->refresh()->quantidade_em_estoque, 2);
     }
 }
