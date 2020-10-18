@@ -2,27 +2,28 @@
 
 
 @section('content')
-<table class="table">
+    <table class="table">
         <thead>
         <tr>
             <th>Nome do produto</th>
             <th>Marca</th>
-            <th>Quatidade</th>
+            <th>Quantidade</th>
             <th>Forma de pagamento</th>
-            <th>Opção</th>
         </tr>
         </thead>
         <tbody>
         @foreach ($venda->items as $item )
             <tr>
-                <td>{{ $item->produto->nome }}</td>
+                <td><a href="{{route('produtos.show', $item->produto)}}">{{ $item->produto->nome }}</a></td>
                 <td>{{ $item->produto->marca }}</td>
                 <td>{{ $item->quantidade }}</td>
                 <td>{{ $venda->forma_pagamento }}</td>
             </tr>
         @endforeach
         <tr>
-            <a href="{{route("vendas.index", [$venda])}}"">voltar</a>
+            <td>
+                <a href="{{route("vendas.index")}}">voltar</a>
+            </td>
         </tr>
         </tbody>
     </table>

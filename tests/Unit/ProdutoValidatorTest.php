@@ -3,9 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Produto;
-use App\Validator\ProdutoValidator;
-use App\Validator\ValidationException;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -27,6 +25,6 @@ class ProdutoValidatorTest extends TestCase
         $produto->preco = 50.00;
         $produto->preco_revenda = 40.00;
         $validator = Validator::make($produto->toArray(), Produto::$rules);
-        $this->assertTrue($validator->fails());   
+        $this->assertTrue($validator->fails());
      }
 }

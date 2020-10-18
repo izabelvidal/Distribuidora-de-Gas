@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\Cliente;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ClienteTest extends TestCase
@@ -14,10 +12,10 @@ class ClienteTest extends TestCase
      *
      * @return void
      */
-    public function testCadastraCliente()
+    public function testDeveVisualizarClienteCadastrado()
     {
-        $cliente = Cliente::factory()->make();
-        $response = $this->post('/clientes', $cliente->toArray());
-        $response->assertSeeText($cliente->nome);
+        $cliente = Cliente::find(1);
+        $this->get(route('clientes.show', [$cliente]))
+            ->assertSee($cliente->pessoa->nome);
     }
 }

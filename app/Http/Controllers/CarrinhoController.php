@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Expr\Array_;
 
 class CarrinhoController extends Controller
 {
-    public function adicionar(Request $request)
+    public function store(Request $request)
     {
         if ($request->session()->has('itens')) $carrinho = $request->session()->get('itens');
         else $carrinho = array();
@@ -24,8 +25,7 @@ class CarrinhoController extends Controller
         } else {
             $dados = array();
             $dados['quantidade'] = $request->quantidade;
-            $dados['preco'] = $produto->preco;
-            $dados['produto'] = $produto->nome;
+            $dados['produto'] = $produto;
             $dados['subtotal'] = $produto->preco * $request->quantidade;
             $carrinho[$id] = $dados;
             Validator::make(
@@ -34,10 +34,21 @@ class CarrinhoController extends Controller
             )->validate();
         }
         $request->session()->put('itens', $carrinho);
+        $this->calcultar_total($request);
         return view('carrinho');
     }
 
-    public function remover(Request $request, $produto_id)
+    public function update(Request $request, $produto_id)
+    {
+        $carrinho = $request->session()->get('itens');
+        $carrinho[$produto_id]['quantidade'] = $request->quantidade;
+        $carrinho[$produto_id]['subtotal'] = $request->quantidade * $carrinho[$produto_id]['produto']->preco;
+        $request->session()->put('itens', $carrinho);
+        $this->calcultar_total($request);
+        return view('carrinho');
+    }
+
+    public function destroy(Request $request, $produto_id)
     {
         if ($request->session()->has('itens')) {
             $carrinho = $request->session()->get('itens');
@@ -46,6 +57,24 @@ class CarrinhoController extends Controller
             unset($carrinho[$produto_id]);
         }
         $request->session()->put('itens', $carrinho);
+        $this->calcultar_total($request);
         return view('carrinho');
+    }
+
+    public function index()
+    {
+        return view('carrinho');
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function calcultar_total(Request $request): void
+    {
+        $itens = $request->session()->get('itens');
+        $total = array_sum(array_map(function ($item) {
+            return $item['subtotal'];
+        }, $itens));
+        $request->session()->put('total', $total);
     }
 }

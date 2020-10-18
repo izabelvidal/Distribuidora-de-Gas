@@ -4,10 +4,8 @@ namespace App\Validator;
 use App\Models\Produto;
 use Illuminate\Support\Facades\Validator;
 
-use App\Models\Produto;
-
 class ProdutoValidator{
-    
+
     public static function validate($data){
         $validator = Validator::make($data, \App\Models\Produto::$rules, \App\Models\Produto::$messages);
         if(!$validator -> errors() -> isEmpty ())

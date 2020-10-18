@@ -36,5 +36,11 @@ class Produto extends Model
         'preco_revenda.*' => 'O campo preço revenda é obrigatório e deve ser de no mínimo R$30,00'
     ];
 
+    public function remover_de_estoque($quantidade)
+    {
+        $this->quantidade_em_estoque -= $quantidade;
+        $this->save();
+    }
+
 
 }
