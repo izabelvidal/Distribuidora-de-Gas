@@ -39,7 +39,7 @@ class ClientePolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user = null)
     {
         return true;
     }
@@ -77,7 +77,7 @@ class ClientePolicy
      */
     public function restore(User $user, Cliente $cliente)
     {
-        return false;
+        return true;
     }
 
     /**

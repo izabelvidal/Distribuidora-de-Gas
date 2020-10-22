@@ -16,7 +16,7 @@ class ProdutoPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user = null)
     {
         return true;
     }
@@ -28,7 +28,7 @@ class ProdutoPolicy
      * @param  \App\Models\Produto  $produto
      * @return mixed
      */
-    public function view(User $user, Produto $produto)
+    public function view(Produto $produto, User $user = null)
     {
         return true;
     }
