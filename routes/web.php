@@ -55,6 +55,7 @@ Route::resource("clientes", "ClienteController");
 Route::resource("gerentes", "GerenteController");
 Route::resource("vendas", "VendaController");
 Route::resource("produtos", "ProdutoController");
+Route::resource("funcionarios", "FuncionarioController");
 
 Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
 Route::post('/carrinho', [CarrinhoController::class, 'store'])->name('carrinho.store');
