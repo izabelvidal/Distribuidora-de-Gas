@@ -7,3 +7,10 @@
         </ul>
     </div>
 @endif
+@if (session('message'))
+    <div class="alert alert-danger">
+        <ul>
+                <li>{{ session('message') }}</li>
+        </ul>
+    </div>
+@endif
