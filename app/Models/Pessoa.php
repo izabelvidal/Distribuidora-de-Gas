@@ -29,6 +29,22 @@ class Pessoa extends Model
     {
         return $this->hasOne('App\Models\Endereco');
     }
+
+    public function gerente()
+    {
+        return $this->hasOne('App\Models\Gerente');
+    }
+
+    public function cliente()
+    {
+        return $this->hasOne('App\Models\Cliente');
+    }
+
+    public function funcionario()
+    {
+        return $this->hasOne('App\Models\Funcionario');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');
