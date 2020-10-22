@@ -24,7 +24,7 @@ class ProdutoFactory extends Factory
         return [
             'nome' => $this->faker->word,
             'marca' => $this->faker->word,
-            'quantidade_em_estoque' => $this->faker->randomDigitNot(0),
+            'quantidade_em_estoque' => $this->faker->randomNumber(2),
             'peso' => $this->faker->randomFloat(2, 13, 5000),
             'preco' => $this->faker->randomFloat(2, 40, 5000),
             'preco_revenda' => $this->faker->randomFloat(2, 30,5000)

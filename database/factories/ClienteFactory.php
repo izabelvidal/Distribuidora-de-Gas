@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Cliente;
 use App\Models\Pessoa;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ClienteFactory extends Factory
@@ -24,7 +25,7 @@ class ClienteFactory extends Factory
     {
         return [
             'tipo' => $this->faker->randomElement(['consumidor', 'revendedor']),
-            'pessoa_id' => Pessoa::factory()->create()->getKey()
+            'pessoa_id' => Pessoa::factory()->create(['user_id' => User::factory()->create(['tipo' => 'cliente'])->getKey()])->getKey()
         ];
     }
 }

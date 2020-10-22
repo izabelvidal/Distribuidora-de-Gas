@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Funcionario;
 use App\Models\Pessoa;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FuncionarioFactory extends Factory
@@ -24,7 +25,7 @@ class FuncionarioFactory extends Factory
     {
         return [
             'admissao' => $this->faker->date,
-            'pessoa_id' => Pessoa::factory()->create()->getKey()
+            'pessoa_id' => Pessoa::factory()->create(['user_id' => User::factory()->create(['tipo' => 'funcionario'])->getKey()])->getKey()
         ];
     }
 }
