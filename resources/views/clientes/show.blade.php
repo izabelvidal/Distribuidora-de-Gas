@@ -7,7 +7,7 @@
     </div>
     <div class="form-group">
         <label for="email">email:</label>
-        <input class="form-control" type="email" name="email" id="email" value="{{ $cliente->pessoa->email }}" readonly>
+        <input class="form-control" type="email" name="email" id="email" value="{{ $cliente->pessoa->user->email }}" readonly>
     </div>
     <div class="form-row">
         <div class="col-md-4">

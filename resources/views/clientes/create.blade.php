@@ -28,12 +28,12 @@
         </div>
         <div class="form-row">
             <div class="col">
-                <label for="senha">senha:</label>
-                <input class="form-control" type="password" name="senha" id="senha">
+                <label for="password">password:</label>
+                <input class="form-control" type="password" name="password" id="password">
             </div>
             <div class="col">
-                <label for="senha_confirmation">senha confirmation:</label>
-                <input class="form-control" type="password" name="senha_confirmation" id="senha_confirmation">
+                <label for="password_confirmation">password confirmation:</label>
+                <input class="form-control" type="password" name="password_confirmation" id="password_confirmation">
             </div>
         </div>
         <div class="form-group">

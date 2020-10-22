@@ -10,17 +10,7 @@
         </div>
         <div class="form-group">
             <label for="email">email:</label>
-            <input class="form-control" type="email" name="email" id="email" value="{{ $cliente->pessoa->email }}">
-        </div>
-        <div class="form-row">
-            <div class="col">
-                <label for="senha">senha:</label>
-                <input class="form-control" type="password" name="senha" id="senha">
-            </div>
-            <div class="col">
-                <label for="senha_confirmation">senha confirmation:</label>
-                <input class="form-control" type="password" name="senha_confirmation" id="senha_confirmation">
-            </div>
+            <input class="form-control" type="email" name="email" id="email" value="{{ $cliente->pessoa->user->email }}">
         </div>
         <div class="form-row">
             <div class="col-md-4">
