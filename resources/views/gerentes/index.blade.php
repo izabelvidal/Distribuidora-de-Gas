@@ -15,7 +15,7 @@
             <tr>
                 <td>{{ $gerente->pessoa->nome }}</td>
                 <td>{{ $gerente->pessoa->CPF }}</td>
-                <td>{{ $gerente->pessoa->email }}</td>
+                <td>{{ $gerente->pessoa->user->email }}</td>
                 <td>
                     <a href="{{route("gerentes.edit", [$gerente])}}">editar</a>
                     <a href="{{route("gerentes.show", [$gerente])}}">visualizar</a>
