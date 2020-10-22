@@ -18,11 +18,6 @@ class Venda extends Model
         'forma_pagamento' => 'required'
     ];
 
-    public static $messages = [
-        'cliente_id.*' => 'O campo Cliente id',
-        'preco.*' => 'O campo preço é obrigatório e deve ser de no mínimo R$30,00',
-    ];
-
     public function cliente()
     {
         return $this->belongsTo('App\Models\Cliente');

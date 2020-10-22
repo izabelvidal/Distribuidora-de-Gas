@@ -27,15 +27,6 @@ class Produto extends Model
         'preco_revenda' => 'required|numeric|min:30'
     ];
 
-    public static $messages = [
-        'nome.*' => 'O campo nome é obrigatório e deve ter entre 5 e 100 caracteres',
-        'marca.*' => 'O campo bairro é obrigatório e deve ter entre 5 e 100 caracteres',
-        'quantidade_em_estoque.*' => 'O campo quantidade em estoque é obrigatório e deve ser de no mínimo 1',
-        'peso.*' => 'O campo peso é obrigatório e deve ter no mínimo 13kg',
-        'preco.*' => 'O campo preço é obrigatório e deve ser de no mínimo R$40,00',
-        'preco_revenda.*' => 'O campo preço revenda é obrigatório e deve ser de no mínimo R$30,00'
-    ];
-
     public function remover_de_estoque($quantidade)
     {
         $this->quantidade_em_estoque -= $quantidade;
