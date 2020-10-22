@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Endereco;
 use App\Models\Funcionario;
+use App\Models\Gerente;
+use App\Models\Pessoa;
+use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
 
 class FuncionarioController extends Controller
 {
@@ -34,11 +39,27 @@ class FuncionarioController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return View
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $funcionario = new Funcionario();
+        $pessoa = new Pessoa();
+        $endereco = new Endereco();
+        $user = new User();
+        $funcionario->fill($request->validate(Funcionario::$rules));
+        $pessoa->fill($request->validate(Pessoa::$rules));
+        $endereco->fill($request->validate(Endereco::$rules));
+        $request->merge(['tipo' => 'gerente']);
+        $user->fill($request->validate(User::$rules));
+        $user->password = Hash::make($user->password);
+        $user->save();
+        $pessoa->user()->associate($user);
+        $pessoa->save();
+        $funcionario->pessoa()->associate($pessoa);
+        $pessoa->endereco()->save($endereco);
+        $funcionario->save();
+        return redirect()->action([FuncionarioController::class, 'show'], ['funcionario' => $funcionario]);
     }
 
     /**
@@ -68,11 +89,21 @@ class FuncionarioController extends Controller
      *
      * @param Request $request
      * @param Funcionario $funcionario
-     * @return Response
+     * @return RedirectResponse
      */
     public function update(Request $request, Funcionario $funcionario)
     {
-        //
+        $funcionario->fill($request->validate(Funcionario::$rules));
+        $funcionario->save();
+        $rules = Pessoa::$rules;
+        unset($rules['senha']);
+        $funcionario->pessoa->fill($request->validate($rules));
+        $funcionario->pessoa->save();
+        $funcionario->pessoa->endereco->fill($request->validate(Endereco::$rules));
+        $funcionario->pessoa->endereco->save();
+        $funcionario->pessoa->user->fill($request->validate(User::$rules));
+        $funcionario->pessoa->user->save();
+        return redirect()->action([FuncionarioController::class, 'show'], ['cliente' => $funcionario->refresh()]);
     }
 
     /**

@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Gerente;
 use App\Models\Pessoa;
 use App\Models\Endereco;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\View\View;
 
 class GerenteController extends Controller
 {
@@ -21,7 +22,7 @@ class GerenteController extends Controller
     {
         $gerentes = Gerente::all();
         return view('gerentes.index', ['gerentes' => $gerentes]);
-    }             
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -37,26 +38,26 @@ class GerenteController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
         $gerente = new Gerente();
         $pessoa = new Pessoa();
         $endereco = new Endereco();
-        
-        //validações 
+        $user = new User();
         $gerente->fill($request->validate(Gerente::$rules));
         $pessoa->fill($request->validate(Pessoa::$rules));
         $endereco->fill($request->validate(Endereco::$rules));
-
+        $request->merge(['tipo' => 'gerente']);
+        $user->fill($request->validate(User::$rules));
+        $user->password = Hash::make($user->password);
+        $user->save();
+        $pessoa->user()->associate($user);
         $pessoa->save();
-
         $gerente->pessoa()->associate($pessoa);
-
         $pessoa->endereco()->save($endereco);
         $gerente->save();
-
         return redirect()->action([GerenteController::class, 'show'], ['gerente' => $gerente]);
     }
 
@@ -87,7 +88,7 @@ class GerenteController extends Controller
      *
      * @param Request $request
      * @param Gerente $gerente
-     * @return View
+     * @return RedirectResponse
      */
     public function update(Request $request, Gerente $gerente)
     {
@@ -99,6 +100,8 @@ class GerenteController extends Controller
         $gerente->pessoa->save();
         $gerente->pessoa->endereco->fill($request->validate(Endereco::$rules));
         $gerente->pessoa->endereco->save();
+        $gerente->pessoa->user->fill($request->validate(User::$rules));
+        $gerente->pessoa->user->save();
         return redirect()->action([GerenteController::class, 'show'], ['gerente' => $gerente->refresh()]);
     }
 

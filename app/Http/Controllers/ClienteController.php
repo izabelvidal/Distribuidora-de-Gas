@@ -6,11 +6,12 @@ use App\Models\Cliente;
 use App\Models\Endereco;
 use App\Models\Pessoa;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
 
 class ClienteController extends Controller
 {
@@ -77,7 +78,7 @@ class ClienteController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Cliente $cliente
-     * @return View
+     * @return Application|Factory|View
      */
     public function edit(Cliente $cliente)
     {
@@ -89,7 +90,7 @@ class ClienteController extends Controller
      *
      * @param Request $request
      * @param Cliente $cliente
-     * @return View
+     * @return RedirectResponse|View
      */
     public function update(Request $request, Cliente $cliente)
     {
@@ -101,6 +102,8 @@ class ClienteController extends Controller
         $cliente->pessoa->save();
         $cliente->pessoa->endereco->fill($request->validate(Endereco::$rules));
         $cliente->pessoa->endereco->save();
+        $cliente->pessoa->user->fill($request->validate(User::$rules));
+        $cliente->pessoa->user->save();
         return redirect()->action([ClienteController::class, 'show'], ['cliente' => $cliente->refresh()]);
     }
 
