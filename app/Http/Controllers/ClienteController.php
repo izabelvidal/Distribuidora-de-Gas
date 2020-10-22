@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Endereco;
 use App\Models\Pessoa;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -44,9 +46,15 @@ class ClienteController extends Controller
         $cliente = new Cliente();
         $pessoa = new Pessoa();
         $endereco = new Endereco();
+        $user = new User();
         $cliente->fill($request->validate(Cliente::$rules));
         $pessoa->fill($request->validate(Pessoa::$rules));
         $endereco->fill($request->validate(Endereco::$rules));
+        $request->merge(['tipo' => 'cliente']);
+        $user->fill($request->validate(User::$rules));
+        $user->password = Hash::make($user->password);
+        $user->save();
+        $pessoa->user()->associate($user);
         $pessoa->save();
         $cliente->pessoa()->associate($pessoa);
         $pessoa->endereco()->save($endereco);
