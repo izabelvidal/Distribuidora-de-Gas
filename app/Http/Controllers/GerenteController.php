@@ -20,6 +20,7 @@ class GerenteController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Gerente::class);
         $gerentes = Gerente::all();
         return view('gerentes.index', ['gerentes' => $gerentes]);
     }
@@ -31,6 +32,7 @@ class GerenteController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Gerente::class);
         return view('gerentes.create');
     }
 
@@ -42,6 +44,7 @@ class GerenteController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Gerente::class);
         $gerente = new Gerente();
         $pessoa = new Pessoa();
         $endereco = new Endereco();
@@ -69,6 +72,7 @@ class GerenteController extends Controller
      */
     public function show(Gerente $gerente)
     {
+        $this->authorize('view', $gerente);
         return view('gerentes.show', ['gerente' => $gerente]);
     }
 
@@ -80,6 +84,7 @@ class GerenteController extends Controller
      */
     public function edit(Gerente $gerente)
     {
+        $this->authorize('update', $gerente);
         return view('gerentes.edit', ['gerente' => $gerente]);
     }
 
@@ -92,6 +97,7 @@ class GerenteController extends Controller
      */
     public function update(Request $request, Gerente $gerente)
     {
+        $this->authorize('update', $gerente);
         $gerente->fill($request->validate(Gerente::$rules));
         $gerente->save();
         $rules = Pessoa::$rules;
@@ -113,6 +119,7 @@ class GerenteController extends Controller
      */
     public function destroy(Gerente $gerente)
     {
+        $this->authorize('delete', $gerente);
         $gerente->pessoa()->endereco()->delete();
         $gerente->delete();
         $gerente->pessoa()->delete();

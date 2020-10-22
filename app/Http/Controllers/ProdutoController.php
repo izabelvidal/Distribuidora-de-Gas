@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Redirect;
 
 class ProdutoController extends Controller
 {
@@ -18,6 +17,7 @@ class ProdutoController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Produto::class);
         $produtos = Produto::all();
         return view('produtos.index', ['produtos' => $produtos]);
     }
@@ -29,6 +29,7 @@ class ProdutoController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Produto::class);
         return view('produtos.create');
     }
 
@@ -40,6 +41,7 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Produto::class);
         $produto = new Produto();
         $produto->fill($request->validate(Produto::$rules));
         $produto->save();
@@ -54,6 +56,7 @@ class ProdutoController extends Controller
      */
     public function show(Produto $produto)
     {
+        $this->authorize('view', $produto);
         return view('produtos.show', ['produto' => $produto]);
     }
 
@@ -65,6 +68,7 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
+        $this->authorize('update', $produto);
         return view('produtos.edit', ['produto' => $produto]);
     }
 
@@ -77,6 +81,7 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
+        $this->authorize('update', $produto);
         $produto->fill($request->validate(Produto::$rules));
         $produto->save();
         return redirect()->action([ProdutoController::class, 'show'], ['produto' => $produto->refresh()]);
@@ -90,6 +95,7 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
+        $this->authorize('delete', $produto);
         $produto->delete();
         return redirect()->action([ProdutoController::class, 'index']);
     }

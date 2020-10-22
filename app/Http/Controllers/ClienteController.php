@@ -22,6 +22,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Cliente::class);
         $clientes = Cliente::all();
         return view('clientes.index', ['clientes' => $clientes]);
     }
@@ -33,6 +34,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Cliente::class);
         return view('clientes.create');
     }
 
@@ -44,6 +46,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Cliente::class);
         $cliente = new Cliente();
         $pessoa = new Pessoa();
         $endereco = new Endereco();
@@ -71,6 +74,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
+        $this->authorize('view', $cliente);
         return view('clientes.show', ['cliente' => $cliente]);
     }
 
@@ -82,6 +86,7 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
+        $this->authorize('update', $cliente);
         return view('clientes.edit', ['cliente' => $cliente]);
     }
 
@@ -94,6 +99,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
+        $this->authorize('update', $cliente);
         $cliente->fill($request->validate(Cliente::$rules));
         $cliente->save();
         $rules = Pessoa::$rules;
@@ -115,6 +121,7 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
+        $this->authorize('delete', $cliente);
         $cliente->pessoa()->endereco()->delete();
         $cliente->delete();
         $cliente->pessoa()->delete();

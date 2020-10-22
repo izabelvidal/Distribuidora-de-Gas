@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venda;
-use App\Models\Produto;
 use App\Models\Cliente;
 use App\Models\Item;
 use Illuminate\Contracts\Foundation\Application;
@@ -23,6 +22,7 @@ class VendaController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Venda::class);
         $vendas = Venda::all();
         return view('vendas.index', ['vendas' => $vendas]);
     }
@@ -34,6 +34,7 @@ class VendaController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Venda::class);
         $clientes = Cliente::all();
         return view('vendas.create', ['clientes' => $clientes]);
     }
@@ -43,9 +44,11 @@ class VendaController extends Controller
      *
      * @param Request $request
      * @return RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Venda::class);
         $venda = new Venda();
         $venda->fill($request->validate(Venda::$rules));
         $cliente = Cliente::find($request->cliente_id);
@@ -83,6 +86,7 @@ class VendaController extends Controller
      */
     public function show(Venda $venda)
     {
+        $this->authorize('view', $venda);
         return view('vendas.show', ['venda' => $venda]);
     }
 
@@ -94,6 +98,7 @@ class VendaController extends Controller
      */
     public function destroy(Venda $venda)
     {
+        $this->authorize('delete', $venda);
         $venda->venda()->delete();
         $venda->delete();
         return redirect()->action([VendaController::class, 'index']);

@@ -21,6 +21,7 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Funcionario::class);
         $funcionarios = Funcionario::all();
         return view('funcionarios.index', ['funcionarios' => $funcionarios]);
     }
@@ -32,6 +33,7 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Funcionario::class);
         return view('funcionarios.create');
     }
 
@@ -43,6 +45,7 @@ class FuncionarioController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Funcionario::class);
         $funcionario = new Funcionario();
         $pessoa = new Pessoa();
         $endereco = new Endereco();
@@ -50,7 +53,7 @@ class FuncionarioController extends Controller
         $funcionario->fill($request->validate(Funcionario::$rules));
         $pessoa->fill($request->validate(Pessoa::$rules));
         $endereco->fill($request->validate(Endereco::$rules));
-        $request->merge(['tipo' => 'gerente']);
+        $request->merge(['tipo' => 'funcionario']);
         $user->fill($request->validate(User::$rules));
         $user->password = Hash::make($user->password);
         $user->save();
@@ -70,6 +73,7 @@ class FuncionarioController extends Controller
      */
     public function show(Funcionario $funcionario)
     {
+        $this->authorize('view', $funcionario);
         return view('funcionarios.show', ['funcionario' => $funcionario]);
     }
 
@@ -81,6 +85,7 @@ class FuncionarioController extends Controller
      */
     public function edit(Funcionario $funcionario)
     {
+        $this->authorize('update', $funcionario);
         return view('funcionarios.edit', ['funcionarios' => $funcionario]);
     }
 
@@ -93,6 +98,7 @@ class FuncionarioController extends Controller
      */
     public function update(Request $request, Funcionario $funcionario)
     {
+        $this->authorize('update', $funcionario);
         $funcionario->fill($request->validate(Funcionario::$rules));
         $funcionario->save();
         $rules = Pessoa::$rules;
@@ -114,6 +120,7 @@ class FuncionarioController extends Controller
      */
     public function destroy(Funcionario $funcionario)
     {
+        $this->authorize('delete', $funcionario);
         $funcionario->pessoa()->endereco()->delete();
         $funcionario->delete();
         $funcionario->pessoa()->delete();
