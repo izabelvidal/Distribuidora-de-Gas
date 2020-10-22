@@ -15,7 +15,9 @@ class ClienteTest extends TestCase
     public function testDeveVisualizarClienteCadastrado()
     {
         $cliente = Cliente::find(1);
-        $this->get(route('clientes.show', [$cliente]))
+        $this
+            ->actingAs($cliente->pessoa->user)
+            ->get(route('clientes.show', [$cliente]))
             ->assertSee($cliente->pessoa->nome);
     }
 }
