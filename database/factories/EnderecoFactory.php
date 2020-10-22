@@ -26,7 +26,7 @@ class EnderecoFactory extends Factory
             'bairro' => $this->faker->streetName,
             'cidade' => $this->faker->city,
             'numero' => $this->faker->buildingNumber,
-            'CEP' => $this->faker->randomNumber(8),
+            'CEP' => $this->faker->randomNumber(8, true),
         ];
     }
 }
