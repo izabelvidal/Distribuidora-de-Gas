@@ -63,7 +63,8 @@ class ClienteController extends Controller
         $cliente->pessoa()->associate($pessoa);
         $pessoa->endereco()->save($endereco);
         $cliente->save();
-        return redirect()->action([ClienteController::class, 'show'], ['cliente' => $cliente]);
+        $request->session()->flash('message', 'Cliente salvo com sucesso');
+        return redirect(route('login'));
     }
 
     /**
