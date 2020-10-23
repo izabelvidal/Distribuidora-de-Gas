@@ -14,18 +14,6 @@
             </select>
         </div>
     </div>
-    <!-- depois pegar o cliente automaticamente pelo usuario logado -->
-    <div class="form-row">
-        <div class="col">
-            <label>cliente</label>
-            <select id="cliente_id" name="cliente_id" class="form-control">
-            <option selected disabled value="">Selecionar Cliente</option>
-            @foreach($clientes as $cliente)
-                <option value="{{$cliente->id}}">{{$cliente->pessoa->nome}}</option>
-            @endforeach
-            </select>
-        </div>
-    </div>
     <input class="btn btn-primary" type="submit" value="efetuar compra">
 </form>
 @endsection
