@@ -28,7 +28,7 @@ class ProdutoPolicy
      * @param  \App\Models\Produto  $produto
      * @return mixed
      */
-    public function view(Produto $produto, User $user = null)
+    public function view(User $user = null, Produto $produto = null)
     {
         return true;
     }
