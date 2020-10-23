@@ -51,7 +51,7 @@ class VendaController extends Controller
         $this->authorize('create', Venda::class);
         $venda = new Venda();
         $venda->fill($request->validate(Venda::$rules));
-        $cliente = Cliente::find($request->cliente_id);
+        $cliente = $request->user()->pessoa->cliente;
         $venda->cliente()->associate($cliente);
         $venda->save();
         Validator::make(
