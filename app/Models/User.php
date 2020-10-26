@@ -25,9 +25,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email', 'password', 'tipo'
     ];
 
+    public static $rules = [
+        'email' => 'email|unique:users|required',
+        'password' => 'required|confirmed',
+        'tipo' => 'in:cliente,gerente,funcionario|required'
+    ];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -57,4 +62,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function pessoa()
+    {
+        return $this->hasOne('App\Models\Pessoa');
+    }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="/clientes" method="post">
+    <form action="/funcionarios" method="post">
         @csrf
         <div class="form-group">
             <label for="nome">nome:</label>
@@ -12,18 +12,25 @@
             <input class="form-control" type="email" name="email" id="email" value="{{ old('email') }}">
         </div>
         <div class="form-row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="telefone">telefone:</label>
                 <input class="form-control" type="text" name="telefone" id="telefone" value="{{ old('telefone') }}">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="CPF">CPF:</label>
                 <input class="form-control" type="text" name="CPF" id="CPF" value="{{ old('CPF') }}">
             </div>
-            <div class="col-md-4">
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
                 <label for="nascimento">nascimento:</label>
                 <input class="form-control" type="date" name="nascimento" id="nascimento"
                        value="{{ old('nascimento') }}">
+            </div>
+            <div class="col-md-6">
+                <label for="admissao">admissao:</label>
+                <input class="form-control" type="date" name="admissao" id="admissao"
+                       value="{{ old('admissao') }}">
             </div>
         </div>
         <div class="form-row">
@@ -34,17 +41,6 @@
             <div class="col">
                 <label for="password_confirmation">password confirmation:</label>
                 <input class="form-control" type="password" name="password_confirmation" id="password_confirmation">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="tipo">tipo</label>
-            <div class="radio">
-                <label><input type="radio" name="tipo" value="consumidor"
-                              id="consumidor" {{ ( old('tipo') == 'consumidor' ) ? 'checked' : ''}}>consumidor</label>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="tipo" value="revendedor"
-                              id="revendedor" {{ ( old('tipo') == 'revendedor' ) ? 'checked' : ''}}>revendedor</label>
             </div>
         </div>
         <div class="form-row">

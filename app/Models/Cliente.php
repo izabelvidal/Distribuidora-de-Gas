@@ -13,7 +13,7 @@ class Cliente extends Pessoa
     ];
 
     public static $rules = [
-        'tipo' => 'required',
+        'tipo' => 'required|in:revendedor,consumidor',
     ];
     public function vendas()
     {

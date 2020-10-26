@@ -17,13 +17,11 @@ class CreatePessoasTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('CPF');
-            $table->string('email');
-            $table->string('senha');
             $table->string('telefone');
             $table->date('nascimento');
             $table->timestamps();
-            $table->unique('email');
             $table->unique('CPF');
+            $table->foreignId('user_id')->constrained();
         });
     }
 

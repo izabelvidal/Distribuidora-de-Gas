@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Endereco;
 use App\Models\Pessoa;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PessoaFactory extends Factory
@@ -26,10 +27,8 @@ class PessoaFactory extends Factory
             'nome' => $this->faker->name,
             'telefone' => $this->faker->phoneNumber,
             'CPF' => $this->faker->unique()->cpf,
-            'email' => $this->faker->unique()->email,
-            'senha' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'nascimento' => $this->faker->date,
-
+            'user_id' => User::factory()->create()->getKey()
         ];
     }
 

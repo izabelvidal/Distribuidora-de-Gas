@@ -8,9 +8,13 @@ class Funcionario extends Pessoa
 {
     use hasFactory;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'admissao',
+    ];
 
-    public static $rules = [];
+    public static $rules = [
+        'admissao' => 'required'
+    ];
 
     public function vendas()
     {

@@ -23,7 +23,7 @@ class ItemFactory extends Factory
     public function definition()
     {
         return [
-            'quantidade' => $this->faker->randomDigitNot(0),
+            'quantidade' => $this->faker->randomNumber(2),
             'produto_id' => Produto::factory()->create()->getKey(),
             'preco' => function (array $attributes) {
                 return Produto::find($attributes['produto_id'])->preco * $attributes['quantidade'];

@@ -16,12 +16,12 @@
 
         <div class="form-row">
             <div class="col">
-                <label> Senha</label>
-                <input class="form-control" type="password" placeholder="Senha" name="senha" id="senha">
+                <label>password</label>
+                <input class="form-control" type="password" placeholder="password" name="password" id="password">
             </div>
             <div class="col">
-                <label>Confirmar Senha</label>
-                <input class="form-control" type="password" placeholder="Confirmar senha" name="senha_confirmation" id="senha">
+                <label>password confirmation</label>
+                <input class="form-control" type="password" placeholder="Confirmar password" name="password_confirmation" id="password_confirmation">
             </div>
         </div>
 
@@ -53,7 +53,7 @@
                 <input type="text" class="form-control" id="numero" name="numero" placeholder="Ex: 20" value="{{ old('numero') }}">
             </div>
         </div>
-    
+
         <div class="form-row mt-3">
             <div class="form-group col-md-6">
                 <label>Cidade</label>
@@ -64,7 +64,7 @@
                 <input type="text" class="form-control" name="CEP" id="CEP" placeholder="Ex: 55158-400" value="{{ old('CEP') }}">
             </div>
         </div>
-    
+
         <input class="btn btn-primary" type="submit" value="cadastrar">
     </form>
 @endsection
