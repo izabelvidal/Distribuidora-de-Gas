@@ -28,7 +28,7 @@ class PessoaFactory extends Factory
             'telefone' => $this->faker->phoneNumber,
             'CPF' => $this->faker->unique()->cpf,
             'nascimento' => $this->faker->date,
-            'user_id' => User::factory()->create()->getKey()
+            'user_id' => 0
         ];
     }
 

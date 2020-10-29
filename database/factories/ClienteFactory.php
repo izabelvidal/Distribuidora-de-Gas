@@ -23,9 +23,11 @@ class ClienteFactory extends Factory
      */
     public function definition()
     {
+        $user = User::factory()->create(['tipo' => 'cliente']);
+        $pessoa = Pessoa::factory()->create(['user_id' => $user->getKey()]);
         return [
             'tipo' => $this->faker->randomElement(['consumidor', 'revendedor']),
-            'pessoa_id' => Pessoa::factory()->create(['user_id' => User::factory()->create(['tipo' => 'cliente'])->getKey()])->getKey()
+            'pessoa_id' => $pessoa->getKey(),
         ];
     }
 }
