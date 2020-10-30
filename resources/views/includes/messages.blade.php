@@ -10,7 +10,14 @@
 @if (session('message'))
     <div class="alert alert-success">
         <ul>
-                <li>{{ session('message') }}</li>
+            <li>{{ session('message') }}</li>
+        </ul>
+    </div>
+@endif
+@if (session('warning'))
+    <div class="alert alert-warning">
+        <ul>
+            <li>{{ session('warning') }}</li>
         </ul>
     </div>
 @endif

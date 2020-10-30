@@ -45,7 +45,7 @@
                 <input class="form-control" type="number" name="quantidade" min='1' max='{{$produto->quantidade_em_estoque}}' value='1'/>
             </div>
         </div>
-        <input class="btn btn-primary" type="submit" value="adicionar">
+        <input class="btn btn-primary" type="submit" value="adicionar" id="adicionar">
 
     </form>
 @endsection

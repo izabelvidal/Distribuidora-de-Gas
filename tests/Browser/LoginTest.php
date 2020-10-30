@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
-use Illuminate\Support\Facades\DB;
 
 
 class LoginTest extends DuskTestCase
@@ -20,11 +19,10 @@ class LoginTest extends DuskTestCase
      */
     public function testExample()
     {
-        $user = DB::table('users')->where('email', 'leticiaaraujo6392@gmail.com')->first(); 
+        $user = User::find(1)->first(); 
         $this->browse(function ($browser) use ($user) {
-
-
-            $browser->visit('/login')
+            $browser
+                ->visit('/login')
                 ->type('email', $user->email)
                 ->type('password', 'password')
                 ->pause(2000)

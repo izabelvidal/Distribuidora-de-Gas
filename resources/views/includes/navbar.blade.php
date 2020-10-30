@@ -9,13 +9,80 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav">
+            @canany(['create', 'viewAny'], App\Models\Cliente::class)
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Clientes</a>
+                <div class="dropdown-menu">
+                    @can('create', App\Models\Cliente::class)
+                        <a href="{{ route('clientes.create') }}" class="dropdown-item">Create</a>
+                    @endcan
+                    @can('viewAny', App\Models\Cliente::class)
+                        <a href="{{ route('clientes.index') }}" class="dropdown-item">Index</a>
+                    @endcan
+                </div>
+            </li>
+            @endcanany
+            @canany(['create', 'viewAny'], App\Models\Produto::class)
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Produtos</a>
+                <div class="dropdown-menu">
+                    @can('create', App\Models\Produto::class)
+                        <a href="{{ route('produtos.create') }}" class="dropdown-item">Create</a>
+                    @endcan
+                    @can('viewAny', App\Models\Produto::class)
+                        <a href="{{ route('produtos.index') }}" class="dropdown-item">Index</a>
+                    @endcan
+                </div>
+            </li>
+            @endcanany
+            @canany(['create', 'viewAny'], App\Models\Venda::class)
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Vendas</a>
+                <div class="dropdown-menu">
+                    @can('create', App\Models\Venda::class)
+                        <a href="{{ route('vendas.create') }}" class="dropdown-item">Create</a>
+                    @endcan
+                    @can('viewAny', App\Models\Venda::class)
+                        <a href="{{ route('vendas.index') }}" class="dropdown-item">Index</a>
+                    @endcan
+                </div>
+            </li>
+            @endcanany
+            @canany(['create', 'viewAny'], App\Models\Funcionario::class)
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Funcionários</a>
+                <div class="dropdown-menu">
+                    @can('create', App\Models\Funcionario::class)
+                        <a href="{{ route('funcionarios.create') }}" class="dropdown-item">Create</a>
+                    @endcan
+                    @can('viewAny', App\Models\Funcionario::class)
+                        <a href="{{ route('funcionarios.index') }}" class="dropdown-item">Index</a>
+                    @endcan
+                </div>
+            </li>
+            @endcanany
+            @canany(['create', 'viewAny'], App\Models\Gerente::class)
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Gerentes</a>
+                <div class="dropdown-menu">
+                    @can('create', App\Models\Gerente::class)
+                        <a href="{{ route('gerentes.create') }}" class="dropdown-item">Create</a>
+                    @endcan
+                    @can('viewAny', App\Models\Gerente::class)
+                        <a href="{{ route('gerentes.index') }}" class="dropdown-item">Index</a>
+                    @endcan
+                </div>
+            </li>
+            @endcanany
+        </ul>
         <ul class="navbar-nav ml-auto">
             @guest
                 <li class="nav-item">
-                    @if(Route::currentRouteName() == 'register')
+                    @if(Route::currentRouteName() == 'clientes.create')
                         <a class="btn btn-outline-light ml-md-2" href="{{ route('login') }}">Login</a>
                     @else
-                        <a class="btn btn-outline-light ml-md-2" href="{{ route('register') }}">Cadastrar</a>
+                        <a class="btn btn-outline-light ml-md-2" href="{{ route('clientes.create') }}">Cadastrar</a>
                     @endif
                 </li>
             @else

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class VendaController extends Controller
 {
@@ -23,7 +24,12 @@ class VendaController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Venda::class);
+        $user = Auth::user();
         $vendas = Venda::all();
+        if($user->tipo == 'cliente')
+        {
+            $vendas = Venda::where('cliente_id', $user->pessoa->cliente->id);
+        }
         return view('vendas.index', ['vendas' => $vendas]);
     }
 

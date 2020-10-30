@@ -2,10 +2,10 @@
 
 namespace Tests\Browser;
 
-use Illuminate\Support\Facades\DB;
 use App\Models\Produto;
 use App\Models\Gerente;
 use App\Models\Pessoa;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -19,13 +19,11 @@ class ProdutoTest extends DuskTestCase
      */
     public function testExample()
     {
-        $produto = new Produto();
-        $gerente = DB::table('users')->where('email', 'leticiaaraujo6392@gmail.com')->first();       
-        $produto = Produto::factory()->make();
-
+        $gerente = User::where('tipo', 'gerente')->first();       
         $this->browse(function (Browser $browser) use ($gerente)
         {
-            $browser->loginAs($gerente->id())
+            $browser
+                ->loginAs($gerente)
                 ->visit('/produtos/create')
                 ->type('nome', 'Gás de cozinha')
                 ->type('marca', 'Fugaz')
