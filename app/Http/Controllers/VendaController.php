@@ -28,7 +28,7 @@ class VendaController extends Controller
         $vendas = Venda::all();
         if($user->tipo == 'cliente')
         {
-            $vendas = Venda::where('cliente_id', $user->pessoa->cliente->id);
+            $vendas = Venda::where('cliente_id', $user->pessoa->cliente->id)->get();
         }
         return view('vendas.index', ['vendas' => $vendas]);
     }
