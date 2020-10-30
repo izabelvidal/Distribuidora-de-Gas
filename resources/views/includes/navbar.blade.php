@@ -79,11 +79,8 @@
         <ul class="navbar-nav ml-auto">
             @guest
                 <li class="nav-item">
-                    @if(Route::currentRouteName() == 'clientes.create')
                         <a class="btn btn-outline-light ml-md-2" href="{{ route('login') }}">Login</a>
-                    @else
                         <a class="btn btn-outline-light ml-md-2" href="{{ route('clientes.create') }}">Cadastrar</a>
-                    @endif
                 </li>
             @else
                 <li class="nav-item dropdown">
