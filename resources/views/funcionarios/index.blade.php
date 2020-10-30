@@ -17,7 +17,9 @@
                 <td>{{ $funcionario->pessoa->CPF }}</td>
                 <td>{{ $funcionario->pessoa->user->email }}</td>
                 <td>
+                    @can('update', $funcionario)
                     <a href="{{route("funcionarios.edit", [$funcionario])}}">editar</a>
+                    @endcan
                     <a href="{{route("funcionarios.show", [$funcionario])}}">visualizar</a>
                 </td>
             </tr>
