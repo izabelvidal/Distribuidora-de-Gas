@@ -4,7 +4,6 @@ namespace Tests\Browser;
 
 use App\Models\User;
 use App\Models\Produto;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -26,7 +25,7 @@ class VendaTest extends DuskTestCase
             ->type('quantidade', 2)
             ->press('adicionar')
             ->visit(route('vendas.create'))
-            ->select('forma_pagamento', 'debito')
+            ->select('forma_pagamento', 'Debito')
             ->press('efetuar')
             ->assertSee($produto->nome);
         });

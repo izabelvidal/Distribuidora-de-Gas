@@ -14,6 +14,6 @@
             </select>
         </div>
     </div>
-    <input class="btn btn-primary" type="submit" value="efetuar compra" name="efetuar">
+    <input class="btn btn-primary" type="submit" value="efetuar compra" name="efetuar" id="efetuar">
 </form>
 @endsection
