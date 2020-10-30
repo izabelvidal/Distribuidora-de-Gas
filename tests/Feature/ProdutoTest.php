@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 
-class CadastrarProdutoTest extends TestCase
+class ProdutoTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -16,10 +16,11 @@ class CadastrarProdutoTest extends TestCase
      * @return void
      */
 
-    public function testCadastrarProduto()
+    public function testUsuarioGuestNaoPodeCadastrarProduto()
     {
         $produto = Produto::factory()->make();
-        $response = $this->post('/produtos', $produto->toArray());
-        $response->assertSeeText($produto->marca);
+        $this
+            ->post('/produtos', $produto->toArray())
+            ->assertSessionHas('warning');
     }
 }

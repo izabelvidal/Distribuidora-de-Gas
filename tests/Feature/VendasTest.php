@@ -11,16 +11,13 @@ use Tests\TestCase;
 
 class VendasTest extends TestCase
 {
-    
 
-    public function testExample()
+
+    public function testGuestNaoPodeVisualizarVendas()
     {
-        $venda = Venda::factory()->make();
-        $array = $cliente->toarray();
-        $array['produto_id'] = Produto::find(1);
-        $array['quantidade'] = 1;
-        $array['cliente_id'] = Cliente::find(1);
-        $response = $this->post('/vendas', $array);
-        $response->assertSeeText($venda->preço);
+        $venda = Venda::find(1);
+        $this
+            ->get(route('vendas.show', $venda))
+            ->assertSessionHas('warning');
     }
 }
